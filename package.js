@@ -6,7 +6,7 @@ Package.describe({
   name: packageName,
   version: '0.0.1',
   summary: 'Date format helpers from Moment.js',
-  git: '',
+  git: 'https://github.com/lb-/moment-helpers',
   documentation: 'README.md'
 });
 
