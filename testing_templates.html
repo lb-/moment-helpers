@@ -1,0 +1,27 @@
+<template name="testTemplateInit">
+  test
+</template>
+
+<template name="moFormatArgs">
+  {{moFormat date formatToken}}
+</template>
+
+<template name="moFormatVars">
+  {{moFormat d=date f=formatToken}}
+</template>
+
+<template name="moFromNowArgs">
+  {{moFromNow date withoutSuffix}}
+</template>
+
+<template name="moFromNowVars">
+  {{moFromNow d=date withoutSuffix=withoutSuffix}}
+</template>
+
+<template name="moDiffArgs">
+  {{moDiff dateA dateB units returnFloat}}
+</template>
+
+<template name="moDiffVars">
+  {{moDiff a=dateA b=dateB units=units returnFloat=returnFloat}}
+</template>
