@@ -86,7 +86,7 @@ __returnFloat__ defaults to false, if true it will provide a float as a result, 
 ---------------
 
 ```js
-  mo.options({
+  mo.configure({
     //will return current date & time if date not given to a moment helper
     returnNowIfDateNotGiven: false,
     //enable the debug mode (console logs)
