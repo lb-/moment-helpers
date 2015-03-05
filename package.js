@@ -4,7 +4,7 @@ var packageName = 'lbee:moment-helpers';
 
 Package.describe({
   name: packageName,
-  version: '0.0.1',
+  version: '0.0.2',
   summary: 'Date format helpers from Moment.js',
   git: 'https://github.com/lb-/moment-helpers',
   documentation: 'README.md'
