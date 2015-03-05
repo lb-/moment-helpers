@@ -1,19 +1,16 @@
 # Moment Helpers
-----------------
 
 A set of helpers that closely follows the Moment.js api giving you easy access
 to formatting and other utilities.
 
 
 ## Installation
----------------
 
 ```bash
   meteor add lbee:moment-helpers
 ```
 
 ## Examples
----------------
 
 ### moFormat
 http://momentjs.com/docs/#/displaying/format/
@@ -55,7 +52,6 @@ or can be a shortcut provided to config or using some of the built in ones
 
 
 ### moFromNow
--------------
 http://momentjs.com/docs/#/displaying/fromnow/
 
 You can either use variables passed to the helper or keyword arguments:
@@ -68,7 +64,6 @@ __withoutSuffix__ defaults to false, will return the string with or without the 
 
 
 ### moDiff
-----------
 http://momentjs.com/docs/#/displaying/difference/
 
 You can either use variables passed to the helper or keyword arguments:
@@ -83,7 +78,6 @@ __returnFloat__ defaults to false, if true it will provide a float as a result, 
 
 
 ## Configuration
----------------
 
 ```js
   mo.configure({
@@ -100,14 +94,12 @@ __returnFloat__ defaults to false, if true it will provide a float as a result, 
   });
 ```
 
-## Debug mode
----------------
+## Debug Mode
 
 Will provide some useful console logs, enable it with the config above.
 
 
 ## Contributions, Issues & Improvements
-----------------------------------------
 
 This is a pretty early prototype and may have bugs/issues, happy to take issues and will get to it when I can, also happy to take pull requests (with tests).
 
