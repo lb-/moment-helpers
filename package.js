@@ -4,7 +4,7 @@ var packageName = 'lbee:moment-helpers';
 
 Package.describe({
   name: packageName,
-  version: '0.0.2',
+  version: '0.1.0',
   summary: 'Date format helpers from Moment.js',
   git: 'https://github.com/lb-/moment-helpers',
   documentation: 'README.md'
@@ -34,12 +34,6 @@ Package.onTest(function(api) {
   api.use('underscore');
   api.use('templating', 'client');
   api.use('tinytest');
-  // api.use('ui');
-  // api.use('test-helpers');
-  // api.use('session');
-  // api.use('templating');
-  // api.use('blaze');
-  // api.use('mongo-livedata');
 
   //use this package
   api.use(packageName);
