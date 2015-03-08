@@ -50,6 +50,7 @@ or can be a shortcut provided to config or using some of the built in ones
 #### Providing Date Strings
 
 If providing date as a string, you have two options;
+
 1. Provide it as an [ISO8601](http://en.wikipedia.org/wiki/ISO_8601) string `2015-03-05T12:44:38`, other formats *may* work but read how [Moment.js parses strings](http://momentjs.com/docs/#/parsing/string/) for the risks
 2. Provide a string in any format but also provide the associated format token eg. `2015332-1732|YYYYDDD-HHmm` where `|` is used as a delimiter between the date string and the date format input. This input format will *not* affect the output format.
 
