@@ -3,6 +3,14 @@
 var momentHelpers = function momentHelpers () {
   var self = this;
 
+  //logging messages
+  self._msg = {
+    dateNotValidReturnNow:
+      'valid date not provided, sending new moment instead',
+    dateNotValidReturnNull:
+      'valid date not provided, sending null'
+  };
+
   //initate the default options
   self.options = {
     //if a helper is called and no date given, create one as now
@@ -22,7 +30,11 @@ var momentHelpers = function momentHelpers () {
   };
 
   self.log = function (log) {
-    if (self.options.debug) { console.log(log); }
+    delete self.logged;
+    if (self.options.debug) {
+      self.logged = log;
+      console.log(log);
+    }
   };
 
   //used for moFormat, helps to get a format token eg. 'YYYY-MM-DD'
@@ -56,10 +68,10 @@ var momentHelpers = function momentHelpers () {
       var date = moment(obj);
       if (date.isValid()) { return date; }
     } else if (self.options.returnNowIfDateNotGiven) {
-      self.log('valid date not provided, sending new moment instead');
+      self.log(self._msg.dateNotValidReturnNow);
       return moment();
     } else {
-      self.log('valid date not provided, sending null');
+      self.log(self._msg.dateNotValidReturnNull);
       return null;
     }
   };

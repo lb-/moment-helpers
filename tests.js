@@ -7,14 +7,6 @@ var dateStringAfter = '2015-07-22 15:19:22';
 var dateObjectAfter = new Date(dateStringAfter);
 var dateMomentAfter = moment(dateObjectAfter);
 
-//configuration tests
-
-Tinytest.add('configure - debug true', function (test) {
-  mo.configure({debug:true});
-  test.equal(mo.options.debug, true);
-  mo.configure({debug:false});
-});
-
 //helpers tests
 if (Meteor.isClient) {
 
@@ -193,4 +185,51 @@ if (Meteor.isClient) {
     }), /(4\.2)[0-9]*/);
 
   });
+
+  Tinytest.add('debug - configuration', function (test) {
+    mo.configure({debug:true});
+    test.equal(mo.options.debug, true);
+    mo.configure({debug:false});
+  });
+
+  Tinytest.add('debug - logging enabled test', function (test) {
+    mo.configure({debug:true});
+    mo.log('test');
+    test.equal(mo.logged,'test');
+    mo.configure({debug:false});
+  });
+
+  Tinytest.add('debug - logging disabled test', function (test) {
+    mo.configure({debug:false});
+    mo.log('test');
+    test.isUndefined(mo.logged);
+  });
+
+  Tinytest.add('debug - log if returning date', function (test) {
+    mo.configure({
+      debug: true,
+      returnNowIfDateNotGiven: true
+    });
+
+    test.equal(
+      Blaze.toHTMLWithData(Template.moFormatArgs, {}),
+      moment().format(mo.options.formatTokens.default)
+    );
+    test.equal(mo.logged, mo._msg.dateNotValidReturnNow);
+
+    mo.configure({debug:false});
+  });
+
+  Tinytest.add('debug - log if returning null', function (test) {
+    mo.configure({
+      debug: true,
+      returnNowIfDateNotGiven: false
+    });
+
+    test.equal(Blaze.toHTMLWithData(Template.moFormatArgs, {}), '');
+    test.equal(mo.logged, mo._msg.dateNotValidReturnNull);
+
+    mo.configure({debug:false});
+  });
+
 }
