@@ -1,0 +1,85 @@
+//.jshintrc
+{
+  //Custom Globals
+  "globals": {
+    "Meteor": false,
+    "DDP": false,
+    "Mongo": false,
+    "Session": false,
+    "Template": false,
+    "Blaze": false,
+    "Match": false,
+    "check": false,
+    "Npm": false,
+    "Package": false,
+    "Tinytest": false,
+    "_": false
+  }
+
+  "maxerr": 50,
+
+  //Enforcing
+  "bitwise": true,
+  "camelcase": true,
+  "curly": true,
+  "eqeqeq": true,
+  "forin": true,
+  "immed": true,
+  "indent": 2,
+  "latedef": false,
+  "newcap": false,
+  "noarg": true,
+  "noempty": true,
+  "nonew": false,
+  "plusplus": false,
+  "quotmrk": "single",
+  "undef": true,
+  "unused": true,
+  "strict": true,
+  "trailing": true,
+  "maxparams": false,
+  "maxdepth": false,
+  "maxstatements": false,
+  "maxcomplexity": false,
+  "maxlen": 80,
+
+  //Relaxing
+  "asi": false,
+  "boss": false,
+  "debug": false,
+  "eqnull": false,
+  "es5": false,
+  "esnext": false,
+  "moz": false,
+  "evil": false,
+  "expr": false,
+  "funcscope": false,
+  "globalstrict": true,
+  "iterator": false,
+  "lastsemic": false,
+  "laxbreak": false,
+  "laxcomma": false,
+  "loopfunc": false,
+  "multistr": false,
+  "proto": false,
+  "scripturl": false,
+  "smarttabs": false,
+  "shadow": false,
+  "sub": false,
+  "supernew": false,
+  "validthis": false,
+
+  // Environments
+  "browser": true,
+  "devel": true,
+  "jquery": false,
+  "node": false,
+  "meteor": false,
+
+  // Legacy
+  "nomen": false,
+  "onevar": false,
+  "passfail": false,
+  "white": false
+
+}
