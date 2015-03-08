@@ -232,4 +232,25 @@ if (Meteor.isClient) {
     mo.configure({debug:false});
   });
 
+  Tinytest.add('providing dates as string with format', function (test) {
+    var fmt = 'YYYYMMDD';
+    var str = '20150105';
+    test.equal(
+      Blaze.toHTMLWithData(Template.moFormatArgs, {
+        date: str + '|' + fmt
+      }),
+      moment(str, fmt).format(mo.options.formatTokens.default)
+    );
+
+    var fmt = 'YYYYDDD-HHmm';
+    var str = '2015332-1732';
+    test.equal(
+      Blaze.toHTMLWithData(Template.moFormatArgs, {
+        date: str + '|' + fmt
+      }),
+      moment(str, fmt).format(mo.options.formatTokens.default)
+    );
+
+  });
+
 }

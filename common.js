@@ -56,24 +56,43 @@ var momentHelpers = function momentHelpers () {
     check(obj, Match.Optional(
       Match.OneOf(Match.Where(moment.isMoment), Date, String)
     ));
+    var result;
     //goal is to get a moment object from what is provided
     if (moment.isMoment(obj)) {
       //if a moment is provided, return that moment, no questions asked
-      return obj;
+      result = obj;
     } else if ( _.isDate(obj) ) {
       //if a date is provided, convert to moment and return
-      return moment(obj);
+      result = moment(obj);
     } else if ( _.isString(obj) ) {
       //attempt to get a date from the string
-      var date = moment(obj);
-      if (date.isValid()) { return date; }
-    } else if (self.options.returnNowIfDateNotGiven) {
-      self.log(self._msg.dateNotValidReturnNow);
-      return moment();
-    } else {
-      self.log(self._msg.dateNotValidReturnNull);
-      return null;
+
+      //if '|' is found, separate and use the RHS as the input format token
+      if (obj.indexOf('|') !== -1) {
+        var date = moment(
+          obj.substring(0, obj.indexOf('|')), //input string LHS of '|'
+          obj.substring(obj.indexOf('|') + 1) //input format, RHS after '|'
+        );
+      } else {
+        var date = moment(new Date(obj));
+      }
+      if (date.isValid()) {
+        result = date;
+      }
     }
+
+    //could not get a moment object
+    //work out what to return if anything
+    if (! result ) {
+      if (self.options.returnNowIfDateNotGiven) {
+        self.log(self._msg.dateNotValidReturnNow);
+        return moment();
+      } else {
+        self.log(self._msg.dateNotValidReturnNull);
+      }
+    }
+
+    return result;
   };
 
 };
