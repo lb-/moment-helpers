@@ -59,6 +59,66 @@ if (Meteor.isClient) {
     }), '');
   });
 
+  Tinytest.add('moFormat - helper with empty strings & return now', function (test) {
+    var fmt = 'dddd [the] Do [of] MMMM, YYYY';
+    mo.configure({returnNowIfDateNotGiven: true});
+    test.equal(
+      Blaze.toHTMLWithData(Template.moFormatVars, {date: '', formatToken: fmt}),
+      moment().format(fmt)
+    );
+    test.equal(
+      Blaze.toHTMLWithData(Template.moFormatVars, {date: 'null', formatToken: fmt}),
+      moment().format(fmt)
+    );
+    test.equal(
+      Blaze.toHTMLWithData(Template.moFormatVars, {date: 'undefined', formatToken: fmt}),
+      moment().format(fmt)
+    );
+    test.equal(
+      Blaze.toHTMLWithData(Template.moFormatVars, {date: null, formatToken: fmt}),
+      moment().format(fmt)
+    );
+    test.equal(
+      Blaze.toHTMLWithData(Template.moFormatVars, {date: undefined, formatToken: fmt}),
+      moment().format(fmt)
+    );
+    //error could cause this
+    test.equal(
+      Blaze.toHTMLWithData(Template.moFormatVars, {date: '|', formatToken: fmt}),
+      moment().format(fmt)
+    );
+    mo.configure({returnNowIfDateNotGiven: false});
+  });
+
+  Tinytest.add('moFormat - helper with empty strings & return null', function (test) {
+    mo.configure({returnNowIfDateNotGiven: false});
+    test.equal(
+      Blaze.toHTMLWithData(Template.moFormatVars, {date: ''}),
+      ''
+    );
+    test.equal(
+      Blaze.toHTMLWithData(Template.moFormatVars, {date: 'null'}),
+      ''
+    );
+    test.equal(
+      Blaze.toHTMLWithData(Template.moFormatVars, {date: 'undefined'}),
+      ''
+    );
+    test.equal(
+      Blaze.toHTMLWithData(Template.moFormatVars, {date: null}),
+      ''
+    );
+    test.equal(
+      Blaze.toHTMLWithData(Template.moFormatVars, {date: undefined}),
+      ''
+    );
+    //error could cause this
+    test.equal(
+      Blaze.toHTMLWithData(Template.moFormatVars, {date: '|'}),
+      ''
+    );
+  });
+
   Tinytest.add('moFormat - missing vars + defaults changed', function (test) {
     mo.configure({
       returnNowIfDateNotGiven: true,

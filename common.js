@@ -54,7 +54,7 @@ var momentHelpers = function momentHelpers () {
 
   self._getMoment = function getMoment (obj) {
     check(obj, Match.Optional(
-      Match.OneOf(Match.Where(moment.isMoment), Date, String)
+      Match.OneOf(Match.Where(moment.isMoment), Date, String, null)
     ));
     var result;
     //goal is to get a moment object from what is provided
@@ -64,7 +64,7 @@ var momentHelpers = function momentHelpers () {
     } else if ( _.isDate(obj) ) {
       //if a date is provided, convert to moment and return
       result = moment(obj);
-    } else if ( _.isString(obj) ) {
+    } else if ( _.isString(obj) && (obj.length > 1) ) {
       //attempt to get a date from the string
 
       //if '|' is found, separate and use the RHS as the input format token
