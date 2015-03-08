@@ -153,12 +153,12 @@ if (Meteor.isClient) {
       returnFloat: true
     }), '11250442');
 
-    test.equal(Blaze.toHTMLWithData(Template.moDiffArgs, {
+    test.matches(Blaze.toHTMLWithData(Template.moDiffArgs, {
       dateA: dateMomentAfter,
       dateB: dateMoment,
       units: 'months',
       returnFloat: true
-    }), '4.264949970131422');
+    }), /(4\.2)[0-9]*/);
 
   });
 
@@ -185,12 +185,12 @@ if (Meteor.isClient) {
       returnFloat: true
     }), '11250442');
 
-    test.equal(Blaze.toHTMLWithData(Template.moDiffVars, {
+    test.matches(Blaze.toHTMLWithData(Template.moDiffVars, {
       dateA: dateMomentAfter,
       dateB: dateMoment,
       units: 'months',
       returnFloat: true
-    }), '4.264949970131422');
+    }), /(4\.2)[0-9]*/);
 
   });
 }
