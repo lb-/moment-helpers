@@ -20,8 +20,6 @@ var momentHelpers = function momentHelpers () {
     //initial library of format tokens
     formatTokens: {
       'default': 'YYYY-MM-DD',
-      //TASK: tokens should be able to be a function also
-      //Eg. 'dateOrTime': function (moDate) {//check if the date is just a date}
     }
   };
 
