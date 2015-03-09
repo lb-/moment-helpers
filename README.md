@@ -71,6 +71,41 @@ If you provide null, undefined or it cannot parse the string it will fail silent
 However, if you set `returnNowIfDateNotGiven` to `true` in config, it will return the current datetime.
 
 
+#### Providing formatToken shortcuts
+
+This feature enables you to set custom 'shortcuts' to formatTokens making it easier to keep your format tokens in a central place.
+
+**common.js**
+```js
+mo.configure({
+  formatTokens: {
+    'shortDate': 'D MMM YY', //3 Jan 15
+    'longDate': 'Do [of] MMMM[,] YYYY', //3rd of January, 2015
+  }
+});
+```
+
+**my_template.html**
+```html
+<template name="my_template">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <!-- show shortdate on mobile, otherwise show longdate -->
+      <span class="visible-xs">
+        {{moFormat eventDate 'shortDate'}}
+      </span>
+      <span class="hidden-xs">
+        {{moFormat eventDate 'longDate'}}
+      </span>
+    </div>
+    <div class="panel-body">
+      <p>{{eventDescription}}</p>
+    </div>
+  </div>
+</template>
+```
+
+
 
 ### moFromNow
 http://momentjs.com/docs/#/displaying/fromnow/
