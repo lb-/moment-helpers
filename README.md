@@ -106,6 +106,7 @@ mo.configure({
 ```
 
 #### Providing formatToken functions
+**NOT IMPLEMENTED YET - FOR FUTURE RELEASE**
 
 This feature enables you to provide a function to the formatToken shortcuts (aka library), this is useful if you want to change the format token string based on the actual Moment object provided.
 
