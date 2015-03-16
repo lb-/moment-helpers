@@ -23,12 +23,19 @@ var momentHelpers = function momentHelpers () {
     }
   };
 
+  //configuration function, merges the defaults with the options provided
   self.configure = function (options) {
     _.extend(self.options, options);
   };
 
+  //logging function
   self.log = function (log) {
+
+    //delete the currently stored log
+    //this was enabled to assit with logging
     delete self.logged;
+
+    //if debugging is enabled, log it!
     if (self.options.debug) {
       self.logged = log;
       console.log(log);
