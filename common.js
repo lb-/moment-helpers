@@ -43,7 +43,7 @@ var momentHelpers = function momentHelpers () {
   };
 
   //used for moFormat, helps to get a format token eg. 'YYYY-MM-DD'
-  self._getToken = function getToken (token) {
+  self._getToken = function getToken (token, aMoment) {
     check(token, Match.Optional(String, null));
     var tokenLibrary = _.defaults(self.options.formatTokens, {
       //these tokens will always be available (unless overridden)
@@ -53,8 +53,23 @@ var momentHelpers = function momentHelpers () {
       'year': 'YYYY',
       'time': 'h:mm a',
     });
+
     //if no token provided, use the default from the token library
-    return tokenLibrary[token || 'default'] || token;
+    if (! token) {
+      token = 'default';
+    }
+
+    //see if the token is a reference to the token library
+    //if not keep what was provided
+    token = tokenLibrary[token] || token;
+
+    //check if token is a function & process
+    if (_.isFunction(token)) {
+      token = token.call(aMoment);
+    }
+    
+    //return the token
+    return token;
   };
 
   self._getMoment = function getMoment (obj) {

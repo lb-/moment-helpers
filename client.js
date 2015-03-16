@@ -34,7 +34,7 @@ Template.registerHelper('moFormat', function () {
 
   // fail silently if the date is not worked out to be a moment
   if (moDate) {
-    return moDate.format(mo._getToken(formatToken));
+    return moDate.format(mo._getToken(formatToken, moDate));
   }
 
   return;
