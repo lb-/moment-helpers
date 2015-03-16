@@ -292,7 +292,7 @@ if (Meteor.isClient) {
     mo.configure({debug:false});
   });
 
-  Tinytest.add('providing dates as string with format', function (test) {
+  Tinytest.add('date parsing - providing dates as string with format', function (test) {
     var fmt = 'YYYYMMDD';
     var str = '20150105';
     test.equal(
