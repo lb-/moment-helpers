@@ -71,7 +71,7 @@ If you provide null, undefined or it cannot parse the string it will fail silent
 However, if you set `returnNowIfDateNotGiven` to `true` in config, it will return the current datetime.
 
 
-#### Providing formatToken shortcuts
+#### Providing formatToken shortcuts (aka formatToken library)
 
 This feature enables you to set custom 'shortcuts' to formatTokens making it easier to keep your format tokens in a central place.
 
@@ -87,7 +87,7 @@ mo.configure({
 
 **my_template.html**
 ```html
-<template name="my_template">
+<template name="myTemplate">
   <div class="panel panel-default">
     <div class="panel-heading">
       <!-- show shortdate on mobile, otherwise show longdate -->
@@ -105,6 +105,58 @@ mo.configure({
 </template>
 ```
 
+#### Providing formatToken functions
+
+This feature enables you to provide a function to the formatToken shortcuts (aka library), this is useful if you want to change the format token string based on the actual Moment object provided.
+
+
+**common.js**
+```js
+mo.configure({
+  //provide your format tokens with a special shortcut'
+  formatTokens: {
+    'gameDay': function () {
+      if (this.format('dddd') === 'Friday') {
+        //if Friday, return text
+        //remember anything inside [] will be a literal string
+        return '[Game Day!]';
+      }
+      //otherwise return just a day with a countdown
+      var nextFriday = moment(this).day(5);
+      var daysUntilFriday = nextFriday.diff(this, 'days');
+      //works out the next Friday and retuns that in the sentence
+      return 'dddd ' + '[' + daysUntilFriday + ' days until Game Day]';
+    }
+  }
+});
+```
+
+**my_template.js**
+```js
+  Template.myTemplate.helpers({
+    isGameDay: function () {
+      //is a Friday
+      return moment('2015-08-14', 'YYYY-MM-DD');
+    },
+    isNotGameDay: function () {
+      //is a Sunday
+      return moment('2015-08-16', 'YYYY-MM-DD');
+    },
+  });
+```
+
+**my_template.html**
+```html
+<template name="myTemplate">
+  <h1>
+    {{moFormat isGameDay 'gameDay'}}
+    <!-- returns 'Game Day!' -->
+  </h1>
+  <h1>
+    {{moFormat isNotGameDay 'gameDay'}}
+    <!-- returns 'Sunday 5 days until Game Day' -->
+  </h1>
+```
 
 
 ### moFromNow
