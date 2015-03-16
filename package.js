@@ -15,6 +15,7 @@ Package.onUse(function(api) {
   //main package requirements
   api.use('momentjs:moment@2.9.0');
   api.use('underscore');
+  api.use('reactive-var', 'client');
   api.use('templating', 'client');
 
   //meteor version
@@ -33,6 +34,7 @@ Package.onTest(function(api) {
   api.use('tinytest');
   api.use('momentjs:moment');
   api.use('underscore');
+  api.use('reactive-var', 'client');
   api.use('templating', 'client');
   api.use('tinytest');
 
