@@ -313,4 +313,132 @@ if (Meteor.isClient) {
 
   });
 
+  Tinytest.add('formatToken library - function as formatToken', function (test) {
+
+    //this enables you to make the formatToken a result of a function
+    //this (inside the function) should be the moment object
+    mo.configure({
+      formatTokens: {
+        'smartDate': function () {
+          if (this.format('HHmm') === '0000') {
+            return 'dddd'; //if no time, assume date and return day like 'Sunday'
+          }
+          // if has time, assume date AND time and return like Sunday 1400
+          return 'dddd h:mma';
+        }
+      }
+    });
+
+    var dateWithTime = moment('2015-08-15 09:22', 'YYYY-MM-DD HH:mm');
+
+    var dateWithoutTime = moment('2015-08-15', 'YYYY-MM-DD');
+
+    test.equal(
+      Blaze.toHTMLWithData(
+        Template.moFormatArgs, {date: dateWithoutTime, formatToken: 'smartDate'}
+      ),
+      'Saturday'
+    );
+
+    test.equal(
+      Blaze.toHTMLWithData(
+        Template.moFormatArgs, {date: dateWithTime, formatToken: 'smartDate'}
+      ),
+      'Saturday 9:22am'
+    );
+
+    //make a formatToken function that returns 'Game Day!' if it is a Friday
+    var isGameDay = moment('2015-08-14', 'YYYY-MM-DD');
+    var isNotGameDayA = moment('2015-08-16', 'YYYY-MM-DD');
+    var isNotGameDayB = moment('2015-09-22', 'YYYY-MM-DD');
+
+    mo.configure({
+      formatTokens: {
+        'gameDay': function () {
+          if (this.format('dddd') === 'Friday') {
+            //if Friday, return this
+            return '[Game Day!]';
+          }
+          //otherwise return just a day with a countdown
+          var nextFriday = moment(this).day(5);
+          var daysUntilFriday = nextFriday.diff(this, 'days');
+          return 'dddd ' + '[' + daysUntilFriday + ' days until Game Day]';
+        }
+      }
+    });
+
+    test.equal(
+      Blaze.toHTMLWithData(
+        Template.moFormatArgs,
+        {date: isGameDay, formatToken: 'gameDay'}
+      ), 'Game Day!'
+    );
+
+    test.equal(
+      Blaze.toHTMLWithData(
+        Template.moFormatArgs,
+        {date: isNotGameDayA, formatToken: 'gameDay'}
+      ), 'Sunday 5 days until Game Day'
+    );
+
+    test.equal(
+      Blaze.toHTMLWithData(
+        Template.moFormatArgs,
+        {date: isNotGameDayB, formatToken: 'gameDay'}
+      ), 'Tuesday 3 days until Game Day'
+    );
+
+
+  });
+
+
+  Tinytest.add('formatToken library - add to library', function (test) {
+
+    mo.configure({
+      formatTokens: {
+        'quickDate': 'D MMM',
+        'notSoQuickDate': 'dddd Do MMMM YYYY',
+      }
+    });
+
+    test.equal(
+      Blaze.toHTMLWithData(
+        Template.moFormatArgs,
+        {date: dateMoment, formatToken: 'quickDate'}
+      ), '14 Mar'
+    );
+
+    test.equal(
+      Blaze.toHTMLWithData(
+        Template.moFormatArgs,
+        {date: dateMoment, formatToken: 'notSoQuickDate'}
+      ), 'Saturday 14th March 2015'
+    );
+
+  });
+
+  Tinytest.add('formatToken library - overwrite built in library', function (test) {
+
+    mo.configure({
+      formatTokens: {
+        'dayOfWeek': 'dd',
+        'time': 'HH:MM',
+      }
+    });
+
+    test.equal(
+      Blaze.toHTMLWithData(
+        Template.moFormatArgs,
+        {date: dateMoment, formatToken: 'dayOfWeek'}
+      ), 'Sa'
+    );
+
+    test.equal(
+      Blaze.toHTMLWithData(
+        Template.moFormatArgs,
+        {date: dateMoment, formatToken: 'time'}
+      ), '10:03'
+    );
+
+  });
 }
