@@ -48,4 +48,5 @@ Package.onTest(function(api) {
   //add test files
   api.addFiles('tests/templates.html', 'client');
   api.addFiles('tests/tests.js');
+  api.addFiles('tests/locale_tests.js');
 });
