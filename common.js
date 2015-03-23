@@ -18,7 +18,6 @@ var momentHelpers = function momentHelpers () {
       self.currentLocale.set(moment.locale());
     };
 
-
     //reactive now
     self.now = new ReactiveVar(moment());
     Meteor.setInterval(function() {

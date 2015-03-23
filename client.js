@@ -55,7 +55,6 @@ Template.registerHelper('moFrom', function () {
   var kw = args.pop();
   var dateA = mo._getMoment(args[0] || kw.hash.a);
   var dateB = mo._getMoment(args[1] || kw.hash.b);
-  
   //if the two dates are valid moment objects, send the result
   if (dateA && dateB) { result = dateA.from(dateB); }
 
