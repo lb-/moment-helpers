@@ -1,18 +1,8 @@
 "use strict";
 
-// var currentLocale = new ReactiveVar();
-//
-// currentLocale.set(moment.locale());
-//
-// mo.setLocale = function(locale){
-//   moment.locale(locale);
-//   currentLocale.set(moment.locale());
-// };
-
 Template.registerHelper('moFormat', function () {
-  // Calling this reactive property ensure the helper is updated whenever the
-  // moment.locale change
-  var locale = currentLocale.get();
+  // Calling this reactive property ensure the helper is updated
+  var locale = mo.currentLocale.get();
 
   //enables the arguments to be provided as args or vars
   //eg. {{moFormat date=myDate}} or {{moFormat myDate}} will do the same thing
@@ -33,9 +23,8 @@ Template.registerHelper('moFormat', function () {
 });
 
 Template.registerHelper('moDiff', function () {
-  // Calling this reactive property ensure the helper is updated whenever the
-  // moment.locale change
-  var locale = currentLocale.get();
+  // Calling this reactive property ensure the helper is updated
+  var locale = mo.currentLocale.get();
   var result;
 
   //enables the arguments to be provided as args or vars
@@ -75,9 +64,8 @@ Template.registerHelper('moFrom', function () {
 });
 
 Template.registerHelper('moFromNow', function () {
-  // Calling this reactive property ensure the helper is updated whenever the
-  // moment.locale change
-  var locale = currentLocale.get();
+  // Calling this reactive property ensure the helper is updated
+  var locale = mo.currentLocale.get();
 
   //enables the arguments to be provided as args or vars
   var args = _.toArray(arguments);
@@ -96,4 +84,10 @@ Template.registerHelper('moFromNow', function () {
 
   // fail silently if the dates were not processed to a moment
   return;
+});
+
+
+Template.registerHelper('moNow', function () {
+  var now = mo.now.get();
+  return now;
 });

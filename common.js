@@ -3,20 +3,27 @@
 var momentHelpers = function momentHelpers () {
   var self = this;
 
-
-  //locale
   if (Meteor.isClient) {
+    //locale
+
     //create a new reactiveVar that holds the moment helper context of locale
-    self._currentLocale = new ReactiveVar();
+    self.currentLocale = new ReactiveVar();
 
     //when creating the moment helper context, set the locale to the moment locale
-    self._currentLocale.set(moment.locale());
+    self.currentLocale.set(moment.locale());
 
     //expose a utility to set the locale, updating moment but also updating reactive locale
     self.setLocale = function (locale) {
       moment.locale(locale);
-      self._currentLocale.set(moment.locale());
+      self.currentLocale.set(moment.locale());
     };
+
+
+    //reactive now
+    self.now = new ReactiveVar(moment());
+    Meteor.setInterval(function() {
+      self.now.set(moment());
+    }, 1000);//every second
   }
 
 
@@ -41,7 +48,6 @@ var momentHelpers = function momentHelpers () {
       // Month name, day of month, year, time
     }
   };
-
 
 
   //configuration function, merges the defaults with the options provided
