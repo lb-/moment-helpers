@@ -70,4 +70,9 @@ Tinytest.add('moment locale - testing', function (test) {
 
   //test the locale formatting works
   test.equal(dateMoment.format('LLLL'), 'samedi 14 mars 2015 10:12');
+
+  //test the moment helper setLocale function
+  mo.setLocale('en');
+  test.equal(moment.locale(), 'en');
+
 });
