@@ -188,6 +188,17 @@ __date__ can be a Javascript Date, moment object or date string (using the defau
 
 __withoutSuffix__ defaults to false, will return the string with or without the suffix.
 
+### moFrom
+http://momentjs.com/docs/#/displaying/from/
+
+You can either use variables passed to the helper or keyword arguments:
+* `{{moFrom dateA dateB}}`
+* `{{moFrom a=dateA b=dateB}}`
+
+__dateA or dateB__ can be a Javascript Date, moment object or date string (using the default Moment.js parser), it will behave as the date described above.
+
+Can be used with `moNow` to provide a reactive date difference, updated every second
+
 
 ### moDiff
 http://momentjs.com/docs/#/displaying/difference/
