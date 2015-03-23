@@ -10,6 +10,11 @@ to formatting and other utilities.
   meteor add lbee:moment-helpers
 ```
 
+## Reactivity
+In order to get reactive helpers modifying the results according to current locale,
+you must use `mo.setLocale` instead of `moment.locale` whenever you want to change
+locale dynamically.
+
 ## Examples
 
 ### moFormat
