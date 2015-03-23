@@ -56,6 +56,24 @@ Template.registerHelper('moDiff', function () {
   return result;
 });
 
+Template.registerHelper('moFrom', function () {
+  // Calling this reactive property ensure the helper is updated
+  var locale = mo.currentLocale.get();
+  var result;
+
+  //enables the arguments to be provided as args or vars
+  var args = _.toArray(arguments);
+  var kw = args.pop();
+  var dateA = mo._getMoment(args[0] || kw.hash.a);
+  var dateB = mo._getMoment(args[1] || kw.hash.b);
+  
+  //if the two dates are valid moment objects, send the result
+  if (dateA && dateB) { result = dateA.from(dateB); }
+
+  // fail silently if the dates were not processed to a moment
+  return result;
+});
+
 Template.registerHelper('moFromNow', function () {
   // Calling this reactive property ensure the helper is updated whenever the
   // moment.locale change
