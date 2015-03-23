@@ -47,13 +47,13 @@ if (Meteor.isClient) {
   Tinytest.add('moFormat - helper with missing variables', function (test) {
     test.equal(Blaze.toHTMLWithData(Template.moFormatArgs, {
       date: dateMoment,
-    }), '2015-03-14'); //default format
+    }), dateMoment.format('LLL')); //default format
     test.equal(Blaze.toHTMLWithData(Template.moFormatArgs, {
       formatToken: 'hh:mm a'
     }), '');
     test.equal(Blaze.toHTMLWithData(Template.moFormatVars, {
       date: dateMoment,
-    }), '2015-03-14'); //default format
+    }), dateMoment.format('LLL')); //default format
     test.equal(Blaze.toHTMLWithData(Template.moFormatVars, {
       formatToken: 'dddd [the] Do [of] MMMM, YYYY'
     }), '');
@@ -243,6 +243,53 @@ if (Meteor.isClient) {
       units: 'months',
       returnFloat: true
     }), /(4\.2)[0-9]*/);
+
+  });
+
+
+  Tinytest.add('moFrom - mix of everything as args', function (test) {
+
+    mo.configure({
+      returnNowIfDateNotGiven: true,
+    });
+
+    test.equal(Blaze.toHTMLWithData(Template.moFromArgs, {
+      dateA: dateMomentAfter,
+      dateB: dateMoment,
+    }), 'in 4 months');
+
+    test.equal(Blaze.toHTMLWithData(Template.moFromArgs, {
+      dateA: dateMoment,
+      dateB: dateMomentAfter,
+    }), '4 months ago');
+
+  });
+
+  Tinytest.add('moFrom - mix of everything as vars', function (test) {
+
+    mo.configure({
+      returnNowIfDateNotGiven: true,
+    });
+
+    test.equal(Blaze.toHTMLWithData(Template.moFromVars, {
+      dateA: dateMomentAfter,
+      dateB: dateMoment,
+    }), 'in 4 months');
+
+    test.equal(Blaze.toHTMLWithData(Template.moFromVars, {
+      dateA: dateMoment,
+      dateB: dateMomentAfter,
+    }), '4 months ago');
+
+    test.equal(Blaze.toHTMLWithData(Template.moFromVars, {
+      dateA: null,
+      dateB: dateMoment,
+    }), moment().from(dateMoment) )
+
+    test.equal(Blaze.toHTMLWithData(Template.moFromVars, {
+      // dateA: dateMoment,
+      dateB: dateMoment,
+    }), moment().from(dateMoment) )
 
   });
 
