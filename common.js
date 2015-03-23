@@ -3,6 +3,21 @@
 var momentHelpers = function momentHelpers () {
   var self = this;
 
+
+  //locale
+
+  //create a new reactiveVar that holds the moment helper context of locale
+  self._currentLocale = new ReactiveVar();
+
+  //when creating the moment helper context, set the locale to the moment locale
+  self._currentLocale.set(moment.locale());
+
+  //expose a utility to set the locale, updating moment but also updating reactive locale
+  self.setLocale = function (locale) {
+    moment.locale(locale);
+    self._currentLocale.set(moment.locale());
+  };
+
   //logging messages
   self._msg = {
     dateNotValidReturnNow:
@@ -22,6 +37,8 @@ var momentHelpers = function momentHelpers () {
       'default': 'YYYY-MM-DD',
     }
   };
+
+
 
   //configuration function, merges the defaults with the options provided
   self.configure = function (options) {
@@ -67,7 +84,7 @@ var momentHelpers = function momentHelpers () {
     if (_.isFunction(token)) {
       token = token.call(aMoment);
     }
-    
+
     //return the token
     return token;
   };

@@ -1,13 +1,13 @@
 "use strict";
 
-var currentLocale = new ReactiveVar();
-
-currentLocale.set(moment.locale());
-
-mo.setLocale = function(locale){
-  moment.locale(locale);
-  currentLocale.set(moment.locale());
-};
+// var currentLocale = new ReactiveVar();
+//
+// currentLocale.set(moment.locale());
+//
+// mo.setLocale = function(locale){
+//   moment.locale(locale);
+//   currentLocale.set(moment.locale());
+// };
 
 Template.registerHelper('moFormat', function () {
   // Calling this reactive property ensure the helper is updated whenever the

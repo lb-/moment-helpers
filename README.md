@@ -11,9 +11,7 @@ to formatting and other utilities.
 ```
 
 ## Reactivity
-In order to get reactive helpers modifying the results according to current locale,
-you must use `mo.setLocale` instead of `moment.locale` whenever you want to change
-locale dynamically.
+In order to get reactive helpers modifying the results according to current locale, you must use `mo.setLocale` instead of `moment.locale` whenever you want to change locale dynamically.
 
 ## Examples
 
