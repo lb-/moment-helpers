@@ -13,7 +13,6 @@ Package.describe({
 
 Package.onUse(function(api) {
   //main package requirements
-  api.use('momentjs:moment@2.9.0');
   api.use('underscore');
   api.use('reactive-var', 'client');
   api.use('templating', 'client');
