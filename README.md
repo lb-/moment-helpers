@@ -19,7 +19,7 @@ to formatting and other utilities.
 ```
 
 ## Reactivity
-In order to get reactive helpers modifying the results according to current locale, you must use `mo.setLocale` instead of `moment.locale` whenever you want to change locale dynamically.
+In order to get reactive helpers modifying the results according to current locale, you must use `mo.setLocale` instead of `moment.locale` whenever you want to change locale dynamically. This will be available on the client only.
 
 ## Examples
 
@@ -209,7 +209,8 @@ __returnFloat__ defaults to false, if true it will provide a float as a result, 
     //http://momentjs.com/docs/#/displaying/format/
     //default format should be set as 'default'
     formatTokens: {
-      'default': 'YYYY-MM-DD',
+      'default': 'LLL', // defaults to locale date format
+      //Month name, day of month, year, time
     }
   });
 ```
