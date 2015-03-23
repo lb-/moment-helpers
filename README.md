@@ -6,15 +6,7 @@ to formatting and other utilities.
 
 ## Installation
 
-### Bring Your Own Moment.js
-
-**Important: This package requires you to BYO moment.js**
-[Atmosphere Moment Packages Search](https://atmospherejs.com/packages/moment)
-
-### Adding Package
-
 ```bash
-  meteor add momentjs:moment
   meteor add lbee:moment-helpers
 ```
 
