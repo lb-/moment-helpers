@@ -15,6 +15,20 @@ In order to get reactive helpers modifying the results according to current loca
 
 ## Examples
 
+## moNow
+moNow will return a reactive current moment, updated every second, it can be passed to moFormat (or any other helper) or be used on its own
+
+```html
+  <template name='myClock'>
+    <h1>Current Time
+      <small>{{moFormat moNow 'HH:mm:ss'}}</small>
+    </h1>
+  </template>
+```
+
+You can also use this reactive variable anywhere on the client via `mo.now.get()`
+
+
 ### moFormat
 http://momentjs.com/docs/#/displaying/format/
 
