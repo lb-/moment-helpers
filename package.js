@@ -19,7 +19,7 @@ Package.onUse(function(api) {
   api.use('templating', 'client');
 
   //meteor version
-  api.versionsFrom('1.0.3.2');
+  api.versionsFrom('METEOR@1.0');
 
   //main files
   api.addFiles('common.js');
