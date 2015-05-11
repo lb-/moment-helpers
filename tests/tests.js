@@ -360,7 +360,7 @@ if (Meteor.isClient) {
 
   });
 
-  Tinytest.add('formatToken library - function as formatToken', function (test) {
+  Tinytest.add('formatToken library - function via formatToken', function (test) {
 
     //this enables you to make the formatToken a result of a function
     //this (inside the function) should be the moment object
