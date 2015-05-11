@@ -123,7 +123,6 @@ mo.configure({
 ```
 
 #### Providing formatToken functions
-**NOT IMPLEMENTED YET - FOR FUTURE RELEASE**
 
 This feature enables you to provide a function to the formatToken shortcuts (aka library), this is useful if you want to change the format token string based on the actual Moment object provided.
 
@@ -131,7 +130,9 @@ This feature enables you to provide a function to the formatToken shortcuts (aka
 **common.js**
 ```js
 mo.configure({
-  //provide your format tokens with a special shortcut'
+  //provide a formatToken that returns the format as a result of a function
+  //if it is game day (Friday) return something exciting
+  //if it is not game day (not Friday), let me know how long I have to wait
   formatTokens: {
     'gameDay': function () {
       if (this.format('dddd') === 'Friday') {
@@ -239,6 +240,7 @@ Will provide some useful console logs, enable it with the config above.
 
 ## Contributions, Issues & Improvements
 
-This is a pretty early prototype and may have bugs/issues, happy to take issues and will get to it when I can, also happy to take pull requests (with tests).
+**A Note on Moment.js Dependencies**
+Currently this package depends on the official Moment.js package `momentjs:moment`, please be aware that if you are using any other Moment.js package such as `mrt:moment` or some of the moment with langs packages you could end up with two or more copies of Moment.js in your client, there appears to be no simple way to avoid this currently, raise an issue if you feel otherwise.
 
 Any suggestions on api/interface improvements would also be appreciated.
