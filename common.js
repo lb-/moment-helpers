@@ -143,11 +143,4 @@ var momentHelpers = function momentHelpers () {
 
 };
 
-
-if (typeof moment != "undefined") {
-  /* jshint ignore:start */
-  mo = new momentHelpers();
-  /* jshint ignore:end */
-} else {
-  throw new Error('lbee:moment-helpers, no Moment package is installed');
-}
+mo = new momentHelpers();
