@@ -1,7 +1,7 @@
 "use strict";
 
 var packageName = 'lbee:moment-helpers';
-var packageVersion = '0.2.0';
+var packageVersion = '1.0.0';
 
 Package.describe({
   name: packageName,
@@ -13,7 +13,7 @@ Package.describe({
 
 Package.onUse(function(api) {
   //main package requirements
-  api.use('momentjs:moment@2.9.0');
+  api.use('momentjs:moment@2.10.3', ['client', 'server']);
   api.use('underscore');
   api.use('reactive-var', 'client');
   api.use('templating', 'client');
