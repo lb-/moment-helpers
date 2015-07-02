@@ -293,6 +293,158 @@ if (Meteor.isClient) {
 
   });
 
+  Tinytest.add('moCalendar - everything as args - no reference time', function (test) {
+
+    var yesterdayAt1pm = moment().subtract(1, 'days').hour(13).minute(0);
+    console.log('yesterdayAt1pm', yesterdayAt1pm);
+    var tomorrowAt335am = moment().add(1, 'days').hour(3).minute(35);
+    var lastSat7pm = moment().weekday(-1).hour(19).minute(0);
+
+    mo.configure({
+      returnNowIfDateNotGiven: true,
+    });
+
+    //without providing a reference date, but providing the focus date
+    test.equal(Blaze.toHTMLWithData(Template.moCalendarArgs, {
+      someDateTime: yesterdayAt1pm,
+    }), 'Yesterday at 1:00 PM');
+
+    test.equal(Blaze.toHTMLWithData(Template.moCalendarArgs, {
+      someDateTime: tomorrowAt335am,
+    }), 'Tomorrow at 3:35 AM');
+
+    test.equal(Blaze.toHTMLWithData(Template.moCalendarArgs, {
+      someDateTime: lastSat7pm,
+    }), 'Last Saturday at 7:00 PM');
+
+    test.equal(Blaze.toHTMLWithData(Template.moCalendarArgs, {
+      someDateTime: dateString,
+    }), '03/14/2015');
+
+    //without providing a reference date, without providing the focus date
+    test.equal(Blaze.toHTMLWithData(Template.moCalendarArgs, {
+      // someDateTime: yesterdayAt1pm,
+    }), 'Today at ' + moment().format('h:mm A'));
+
+  });
+
+  Tinytest.add('moCalendar - everything as args - with reference time', function (test) {
+
+    var referenceTime = moment(dateMoment);
+    var yesterdayAt1pm = moment(referenceTime).subtract(1, 'days').hour(13).minute(0);
+    //console.log('referenceTime',referenceTime, 'yesterdayAt1pm', yesterdayAt1pm);
+    var tomorrowAt335am = moment(referenceTime).add(1, 'days').hour(3).minute(35);
+    var lastThu7pm = moment(referenceTime).weekday(4).hour(19).minute(0);
+
+    mo.configure({
+      returnNowIfDateNotGiven: true,
+    });
+
+    //without providing a reference date, but providing the focus date
+    test.equal(Blaze.toHTMLWithData(Template.moCalendarArgs, {
+      someDateTime: yesterdayAt1pm,
+      referenceTime: referenceTime,
+    }), 'Yesterday at 1:00 PM');
+
+    test.equal(Blaze.toHTMLWithData(Template.moCalendarArgs, {
+      someDateTime: tomorrowAt335am,
+      referenceTime: referenceTime,
+    }), 'Tomorrow at 3:35 AM');
+
+    test.equal(Blaze.toHTMLWithData(Template.moCalendarArgs, {
+      someDateTime: lastThu7pm,
+      referenceTime: referenceTime,
+    }), 'Last Thursday at 7:00 PM');
+
+    test.equal(Blaze.toHTMLWithData(Template.moCalendarArgs, {
+      someDateTime: dateString,
+      referenceTime: referenceTime,
+    }), 'Today at 10:12 AM');
+
+    //without providing a reference date, without providing the focus date
+    test.equal(Blaze.toHTMLWithData(Template.moCalendarArgs, {
+      referenceTime: referenceTime,
+    }), moment().format('MM/DD/YYYY'));
+
+  });
+
+
+
+    Tinytest.add('moCalendar - everything as vars - no reference time', function (test) {
+
+      var yesterdayAt1pm = moment().subtract(1, 'days').hour(13).minute(0);
+      console.log('yesterdayAt1pm', yesterdayAt1pm);
+      var tomorrowAt335am = moment().add(1, 'days').hour(3).minute(35);
+      var lastSat7pm = moment().weekday(-1).hour(19).minute(0);
+
+      mo.configure({
+        returnNowIfDateNotGiven: true,
+      });
+
+      //without providing a reference date, but providing the focus date
+      test.equal(Blaze.toHTMLWithData(Template.moCalendarVars, {
+        someDateTime: yesterdayAt1pm,
+      }), 'Yesterday at 1:00 PM');
+
+      test.equal(Blaze.toHTMLWithData(Template.moCalendarVars, {
+        someDateTime: tomorrowAt335am,
+      }), 'Tomorrow at 3:35 AM');
+
+      test.equal(Blaze.toHTMLWithData(Template.moCalendarVars, {
+        someDateTime: lastSat7pm,
+      }), 'Last Saturday at 7:00 PM');
+
+      test.equal(Blaze.toHTMLWithData(Template.moCalendarVars, {
+        someDateTime: dateString,
+      }), '03/14/2015');
+
+      //without providing a reference date, without providing the focus date
+      test.equal(Blaze.toHTMLWithData(Template.moCalendarVars, {
+        // someDateTime: yesterdayAt1pm,
+      }), 'Today at ' + moment().format('h:mm A'));
+
+    });
+
+    Tinytest.add('moCalendar - everything as vars - with reference time', function (test) {
+
+      var referenceTime = moment(dateMoment);
+      var yesterdayAt1pm = moment(referenceTime).subtract(1, 'days').hour(13).minute(0);
+      //console.log('referenceTime',referenceTime, 'yesterdayAt1pm', yesterdayAt1pm);
+      var tomorrowAt335am = moment(referenceTime).add(1, 'days').hour(3).minute(35);
+      var lastThu7pm = moment(referenceTime).weekday(4).hour(19).minute(0);
+
+      mo.configure({
+        returnNowIfDateNotGiven: true,
+      });
+
+      //without providing a reference date, but providing the focus date
+      test.equal(Blaze.toHTMLWithData(Template.moCalendarVars, {
+        someDateTime: yesterdayAt1pm,
+        referenceTime: referenceTime,
+      }), 'Yesterday at 1:00 PM');
+
+      test.equal(Blaze.toHTMLWithData(Template.moCalendarVars, {
+        someDateTime: tomorrowAt335am,
+        referenceTime: referenceTime,
+      }), 'Tomorrow at 3:35 AM');
+
+      test.equal(Blaze.toHTMLWithData(Template.moCalendarVars, {
+        someDateTime: lastThu7pm,
+        referenceTime: referenceTime,
+      }), 'Last Thursday at 7:00 PM');
+
+      test.equal(Blaze.toHTMLWithData(Template.moCalendarVars, {
+        someDateTime: dateString,
+        referenceTime: referenceTime,
+      }), 'Today at 10:12 AM');
+
+      //without providing a reference date, without providing the focus date
+      test.equal(Blaze.toHTMLWithData(Template.moCalendarVars, {
+        referenceTime: referenceTime,
+      }), moment().format('MM/DD/YYYY'));
+
+    });
+
   Tinytest.add('debug - configuration', function (test) {
     mo.configure({debug:true});
     test.equal(mo.options.debug, true);
@@ -488,4 +640,5 @@ if (Meteor.isClient) {
     );
 
   });
+
 }
