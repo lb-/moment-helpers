@@ -3,6 +3,23 @@
 A set of helpers that closely follows the Moment.js api giving you easy access
 to formatting and other utilities.
 
+Implemented helpers:
+* `{{moFormat someDate 'YYYY-MM-DD'}}` is like `moment().format('YYYY-MM-DD');`
+* `{{moFromNow someDate withoutSuffix}}` is like `moment().fromNow(Boolean);`
+* `{{moFrom dateA dateB withoutSuffix}}` is like `moment().from(Moment, Boolean);`
+* `{{moDiff dateA dateB units returnFloat}}` is like `moment().diff(Moment, String, Boolean);`
+* `{{moCalendar date referenceDate}}` is like `moment().calendar(referenceTime);`
+
+```html
+  <template name='myAwesomePost'>
+    //
+     //
+
+    //moment().format(someDate, 'YYYY-MM-DD');
+    {{moFromNow someDate 'YYYY-MM-DD'}}
+  </template>
+```
+
 
 ## Installation
 
