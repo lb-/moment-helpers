@@ -1,7 +1,7 @@
 "use strict";
 
 var packageName = 'lbee:moment-helpers';
-var packageVersion = '1.0.0';
+var packageVersion = '1.1.0';
 
 Package.describe({
   name: packageName,
