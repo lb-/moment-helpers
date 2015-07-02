@@ -10,16 +10,6 @@ Implemented helpers:
 * `{{moDiff dateA dateB units returnFloat}}` is like `moment().diff(Moment, String, Boolean);`
 * `{{moCalendar date referenceDate}}` is like `moment().calendar(referenceTime);`
 
-```html
-  <template name='myAwesomePost'>
-    //
-     //
-
-    //moment().format(someDate, 'YYYY-MM-DD');
-    {{moFromNow someDate 'YYYY-MM-DD'}}
-  </template>
-```
-
 
 ## Installation
 
