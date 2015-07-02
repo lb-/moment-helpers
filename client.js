@@ -85,6 +85,36 @@ Template.registerHelper('moFromNow', function () {
   return;
 });
 
+Template.registerHelper('moCalendar', function () {
+  // Calling this reactive property ensure the helper is updated
+  var locale = mo.currentLocale.get();
+
+  //enables the arguments to be provided as args or vars
+  //eg. {{moFormat date=myDate}} or {{moFormat myDate}} will do the same thing
+  var args = _.toArray(arguments);
+  var kw = args.pop();
+  var date = args[0] || kw.hash.d;
+  var referenceDate = args[1] || kw.hash.r;
+
+  //processes what was given to ensure we end up with a moment object
+  var moDate = mo._getMoment(date);
+
+  //never let reference date default to now if not provided
+  if (referenceDate) {
+    var moReferenceDate = mo._getMoment(referenceDate);
+  }
+
+  // fail silently if the date is not worked out to be a moment
+  if (moDate) {
+    if (moReferenceDate) {
+      return moDate.calendar(moReferenceDate);
+    } else {
+      return moDate.calendar();
+    }
+  }
+
+  return;
+});
 
 Template.registerHelper('moNow', function () {
   var now = mo.now.get();
