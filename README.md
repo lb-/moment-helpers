@@ -215,6 +215,20 @@ __units__ defaults to 'seconds', provides the units to the Moment.js function.
 __returnFloat__ defaults to false, if true it will provide a float as a result, ie. 3.75 years instead of 3 years.
 
 
+### moCalendar
+http://momentjs.com/docs/#/displaying/calendar-time/
+
+Calendar time displays time relative to a given referenceTime (which defaults to now), it groups the presentation into 'today', 'tomorrow', 'last weekday' or 'next weekday'.
+
+You can either use variables passed to the helper or keyword arguments:
+* `{{moCalendar date referenceDate}}`
+* `{{moCalendar d=date r=referenceDate}}`
+
+__date__ can be a Javascript Date, moment object or date string (using the default Moment.js parser), it will behave as the date described above.
+
+__referenceDate__ can be a Javascript Date, moment object or date string (using the default Moment.js parser), it will override the reference date (which normally defaults to now).
+
+
 ## Configuration
 
 ```js
