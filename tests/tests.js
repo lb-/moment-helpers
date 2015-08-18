@@ -9,6 +9,9 @@ var dateMomentAfter = moment(dateObjectAfter);
 
 //helpers tests
 if (Meteor.isClient) {
+  Tinytest.add('momentjs - check version', function (test) {
+    test.equal(moment.version, "2.10.6");
+  });
 
   Tinytest.add('helpers - init templates', function (test) {
     test.equal(Blaze.toHTML(Template.testTemplateInit), 'test');
