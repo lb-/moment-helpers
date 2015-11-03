@@ -14,6 +14,7 @@ Package.describe({
 Package.onUse(function(api) {
   //main package requirements
   api.use('momentjs:moment@2.10.6', ['client', 'server']);
+  api.use('check');
   api.use('underscore');
   api.use('reactive-var', 'client');
   api.use('templating', 'client');
