@@ -12,10 +12,12 @@ Package.describe({
 });
 
 Package.onUse(function(api) {
+  var both = ['client', 'server'];
+
   //main package requirements
-  api.use('momentjs:moment@2.10.6', ['client', 'server']);
-  api.use('check');
-  api.use('underscore');
+  api.use('momentjs:moment@2.10.6', both);
+  api.use('check', both);
+  api.use('underscore', both);
   api.use('reactive-var', 'client');
   api.use('templating', 'client');
 
@@ -31,8 +33,11 @@ Package.onUse(function(api) {
 });
 
 Package.onTest(function(api) {
+  var both = ['client', 'server'];
+
   //add main packages
   api.use('tinytest');
+  api.use('check');
   api.use('momentjs:moment');
   api.use('underscore');
   api.use('reactive-var', 'client');
