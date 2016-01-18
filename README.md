@@ -1,7 +1,6 @@
 # Moment Helpers
 
-A set of helpers that closely follows the Moment.js api giving you easy access
-to formatting and other utilities.
+A set of helpers that closely follows the [Moment.js](http://momentjs.com/) api giving you easy access to formatting and other utilities.
 
 Implemented helpers:
 * `{{moFormat someDate 'YYYY-MM-DD'}}` is like `moment().format('YYYY-MM-DD');`
@@ -235,6 +234,19 @@ __date__ can be a Javascript Date, moment object or date string (using the defau
 
 __referenceDate__ can be a Javascript Date, moment object or date string (using the default Moment.js parser), it will override the reference date (which normally defaults to now).
 
+## Dependencies
+
+### A Note on Moment.js Dependencies
+Currently this package depends on the official Moment.js package `momentjs:moment`, please be aware that if you are using any other Moment.js package such as the old `mrt:moment` or some of the moment with langs packages you could end up with two or more copies of Moment.js in your client, there appears to be no simple way to avoid this currently, raise an issue if you feel otherwise.
+
+### Other Dependencies
+All other dependencies are currently Meteor packages only.
+* [check](https://atmospherejs.com/meteor/check)
+* [underscore](https://atmospherejs.com/meteor/underscore)
+* [reactive](https://atmospherejs.com/meteor/reactive)
+* [templating](https://atmospherejs.com/meteor/templating)
+* [ecmascript](https://atmospherejs.com/meteor/ecmascript)
+
 
 ## Configuration
 
@@ -261,7 +273,10 @@ Will provide some useful console logs, enable it with the config above.
 
 ## Contributions, Issues & Improvements
 
-**A Note on Moment.js Dependencies**
-Currently this package depends on the official Moment.js package `momentjs:moment`, please be aware that if you are using any other Moment.js package such as `mrt:moment` or some of the moment with langs packages you could end up with two or more copies of Moment.js in your client, there appears to be no simple way to avoid this currently, raise an issue if you feel otherwise.
-
 Any suggestions on api/interface improvements would also be appreciated.
+
+To test the package locally
+```
+  #cd to the package directory
+  meteor test-packages ./
+```
