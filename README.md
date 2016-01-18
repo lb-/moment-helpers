@@ -237,7 +237,7 @@ __referenceDate__ can be a Javascript Date, moment object or date string (using 
 ## Dependencies
 
 ### A Note on Moment.js Dependencies
-Currently this package depends on the official Moment.js package `momentjs:moment`, please be aware that if you are using any other Moment.js package such as the old `mrt:moment` or some of the moment with langs packages you could end up with two or more copies of Moment.js in your client, there appears to be no simple way to avoid this currently, raise an issue if you feel otherwise.
+Currently this package depends on the official Moment.js package `momentjs:moment`, please be aware that if you are using any other Moment.js package such as the old `mrt:moment` or some of the moment with langs packages you could end up with two or more copies of Moment.js in your client, there appears to be no simple way to avoid this currently, add to issue [#15](https://github.com/lb-/moment-helpers/issues/15) if you feel otherwise.
 
 ### Other Dependencies
 All other dependencies are currently Meteor packages only.
