@@ -1,4 +1,6 @@
 "use strict";
+var momentVersion = '2.11.1';
+
 var dateString = '2015-03-14 10:12:00';
 var dateObject = new Date('2015-03-14 10:12:00');
 var dateMoment = moment(dateObject);
@@ -10,7 +12,7 @@ var dateMomentAfter = moment(dateObjectAfter);
 //helpers tests
 if (Meteor.isClient) {
   Tinytest.add('momentjs - check version', function (test) {
-    test.equal(moment.version, "2.10.6");
+    test.equal(momentVersion, moment.version);
   });
 
   Tinytest.add('helpers - init templates', function (test) {

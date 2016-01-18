@@ -1,7 +1,9 @@
 "use strict";
 
 var packageName = 'lbee:moment-helpers';
-var packageVersion = '1.2.1';
+var packageVersion = '1.3.0';
+var meteorVersionsFrom = '1.2.1';
+var momentVersion = '2.11.1';
 
 Package.describe({
   name: packageName,
@@ -12,17 +14,18 @@ Package.describe({
 });
 
 Package.onUse(function(api) {
-  var both = ['client', 'server'];
+  //meteor version
+  api.versionsFrom(meteorVersionsFrom);
 
   //main package requirements
-  api.use('momentjs:moment@2.10.6', both);
-  api.use('check', both);
-  api.use('underscore', both);
+  // api.use('momentjs:moment@${momentVersion}');
+  api.use('momentjs:moment@' + momentVersion);
+  api.use('ecmascript');
+  api.use('es5-shim');
+  api.use('check');
+  api.use('underscore');
   api.use('reactive-var', 'client');
   api.use('templating', 'client');
-
-  //meteor version
-  api.versionsFrom('METEOR@1.0');
 
   //main files
   api.addFiles('common.js');
@@ -35,10 +38,17 @@ Package.onUse(function(api) {
 Package.onTest(function(api) {
   var both = ['client', 'server'];
 
+  //meteor version
+  api.versionsFrom(meteorVersionsFrom);
+
   //add main packages
   api.use('tinytest');
   api.use('check');
-  api.use('momentjs:moment');
+
+  // api.use('momentjs:moment@${momentVersion}');
+  api.use('momentjs:moment@' + momentVersion);
+  api.use('ecmascript');
+  api.use('es5-shim');
   api.use('underscore');
   api.use('reactive-var', 'client');
   api.use('templating', 'client');
