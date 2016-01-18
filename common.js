@@ -43,8 +43,7 @@ var momentHelpers = function momentHelpers () {
     //initial library of format tokens
     formatTokens: {
       'default': 'LLL',
-      // defaults to locale date format
-      // Month name, day of month, year, time
+      // defaults to locale date format: Month name, day of month, year, time
     }
   };
 
@@ -85,8 +84,7 @@ var momentHelpers = function momentHelpers () {
       token = 'default';
     }
 
-    //see if the token is a reference to the token library
-    //if not keep what was provided
+    //see if the token is a reference to the token library, otherwise keep
     token = tokenLibrary[token] || token;
 
     //check if token is a function & process
@@ -127,8 +125,7 @@ var momentHelpers = function momentHelpers () {
       }
     }
 
-    //could not get a moment object
-    //work out what to return if anything
+    //could not get a moment object, work out what to return if anything
     if (! result ) {
       if (self.options.returnNowIfDateNotGiven) {
         self.log(self._msg.dateNotValidReturnNow);
