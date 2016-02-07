@@ -13,43 +13,36 @@
     "Npm": false,
     "Package": false,
     "Tinytest": false,
-    "_": false
-  }
+    "_": false,
+    "ReactiveVar": false,
+    "moment": false,
+    "mo": false
+  },
 
   "maxerr": 50,
 
   //Enforcing
   "bitwise": true,
-  "camelcase": true,
   "curly": true,
   "eqeqeq": true,
   "forin": true,
-  "immed": true,
-  "indent": 2,
   "latedef": false,
-  "newcap": false,
   "noarg": true,
-  "noempty": true,
   "nonew": false,
   "plusplus": false,
-  "quotmrk": "single",
   "undef": true,
   "unused": true,
   "strict": true,
-  "trailing": true,
   "maxparams": false,
   "maxdepth": false,
   "maxstatements": false,
   "maxcomplexity": false,
-  "maxlen": 80,
 
   //Relaxing
   "asi": false,
   "boss": false,
   "debug": false,
   "eqnull": false,
-  "es5": false,
-  "esnext": false,
   "moz": false,
   "evil": false,
   "expr": false,
@@ -73,13 +66,5 @@
   "browser": true,
   "devel": true,
   "jquery": false,
-  "node": false,
-  "meteor": false,
-
-  // Legacy
-  "nomen": false,
-  "onevar": false,
-  "passfail": false,
-  "white": false
-
+  "node": false
 }
