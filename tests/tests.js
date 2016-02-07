@@ -1,5 +1,5 @@
 "use strict";
-var momentVersion = '2.11.1';
+var momentVersion = '2.11.2';
 
 var dateString = '2015-03-14 10:12:00';
 var dateObject = new Date('2015-03-14 10:12:00');
@@ -289,12 +289,12 @@ if (Meteor.isClient) {
     test.equal(Blaze.toHTMLWithData(Template.moFromVars, {
       dateA: null,
       dateB: dateMoment,
-    }), moment().from(dateMoment) )
+    }), moment().from(dateMoment) );
 
     test.equal(Blaze.toHTMLWithData(Template.moFromVars, {
       // dateA: dateMoment,
       dateB: dateMoment,
-    }), moment().from(dateMoment) )
+    }), moment().from(dateMoment) );
 
   });
 
@@ -497,8 +497,11 @@ if (Meteor.isClient) {
   });
 
   Tinytest.add('date parsing - providing dates as string with format', function (test) {
-    var fmt = 'YYYYMMDD';
-    var str = '20150105';
+    var fmt;
+    var str;
+
+    fmt = 'YYYYMMDD';
+    str = '20150105';
     test.equal(
       Blaze.toHTMLWithData(Template.moFormatArgs, {
         date: str + '|' + fmt
@@ -506,8 +509,8 @@ if (Meteor.isClient) {
       moment(str, fmt).format(mo.options.formatTokens.default)
     );
 
-    var fmt = 'YYYYDDD-HHmm';
-    var str = '2015332-1732';
+    fmt = 'YYYYDDD-HHmm';
+    str = '2015332-1732';
     test.equal(
       Blaze.toHTMLWithData(Template.moFormatArgs, {
         date: str + '|' + fmt

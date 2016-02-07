@@ -51,7 +51,7 @@ Tinytest.add('moment locale - testing', function (test) {
     // meridiemHour : function (hour, meridiem) {
     //     return /* 0-23 hour, given meridiem token and hour 1-12 */
     // },
-    meridiem : function (hours, minutes, isLower) {
+    meridiem : function (hours) {
         return hours < 12 ? 'PD' : 'MD';
     },
     week : {
@@ -61,7 +61,7 @@ Tinytest.add('moment locale - testing', function (test) {
   });
 
   //crete the dates AFTER the locale has been set
-  var dateString = '2015-03-14 10:12:00';
+  // var dateString = '2015-03-14 10:12:00';
   var dateObject = new Date('2015-03-14 10:12:00');
   var dateMoment = moment(dateObject);
 
