@@ -1,9 +1,9 @@
 "use strict";
 
 var packageName = 'lbee:moment-helpers';
-var packageVersion = '1.3.0';
+var packageVersion = '1.3.1';
 var meteorVersionsFrom = '1.2.1';
-var momentVersion = '2.11.1';
+var momentVersion = '2.11.2';
 
 Package.describe({
   name: packageName,
@@ -36,7 +36,6 @@ Package.onUse(function(api) {
 });
 
 Package.onTest(function(api) {
-  var both = ['client', 'server'];
 
   //meteor version
   api.versionsFrom(meteorVersionsFrom);
