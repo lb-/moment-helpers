@@ -1,113 +1,129 @@
-"use strict";
+'use strict';
 
-Template.registerHelper('moFormat', function () {
+Template.registerHelper( 'moFormat', function () {
   // Calling this reactive property ensure the helper is updated
-  var locale = mo.currentLocale.get();
+  var locale = mo.currentLocale.get(); // eslint-disable-line
 
-  //enables the arguments to be provided as args or vars
-  //eg. {{moFormat date=myDate}} or {{moFormat myDate}} will do the same thing
-  var args = _.toArray(arguments);
+  // enables the arguments to be provided as args or vars
+  // eg. {{moFormat date=myDate}} or {{moFormat myDate}} will do the same thing
+  var args = _.toArray( arguments );
   var kw = args.pop();
   var date = args[0] || kw.hash.d;
   var formatToken = args[1] || kw.hash.f;
 
-  //processes what was given to ensure we end up with a moment object
-  var moDate = mo._getMoment(date);
+  // processes what was given to ensure we end up with a moment object
+  var moDate = mo._getMoment( date );
 
   // fail silently if the date is not worked out to be a moment
-  if (moDate) {
-    return moDate.format(mo._getToken(formatToken, moDate));
+  if ( moDate ) {
+    return moDate.format( mo._getToken( formatToken, moDate ) );
   }
 
   return;
 });
 
-Template.registerHelper('moDiff', function () {
+Template.registerHelper( 'moDiff', function () {
   // Calling this reactive property ensure the helper is updated
-  var locale = mo.currentLocale.get();
+  var locale = mo.currentLocale.get(); // eslint-disable-line
   var result;
 
-  //enables the arguments to be provided as args or vars
-  var args = _.toArray(arguments);
+  // enables the arguments to be provided as args or vars
+  var args = _.toArray( arguments );
   var kw = args.pop();
-  var dateA = mo._getMoment(args[0] || kw.hash.a);
-  var dateB = mo._getMoment(args[1] || kw.hash.b);
+  var dateA = mo._getMoment( args[0] || kw.hash.a );
+  var dateB = mo._getMoment( args[1] || kw.hash.b );
   var units = args[2] || kw.hash.units || 'seconds';
   var returnFloat = args[3] || kw.hash.returnFloat;
 
-  //if the returnFloat is truthy convert it to true, or falsy = false
-  if (returnFloat) { returnFloat = true; } else { returnFloat = false; }
+  // if the returnFloat is truthy convert it to true, or falsy = false
+  if ( returnFloat ) {
+    returnFloat = true;
+  } else {
+    returnFloat = false;
+  }
 
-  //if the two dates are valid moment objects, send the result
-  if (dateA && dateB) { result = dateA.diff(dateB, units, returnFloat); }
+  // if the two dates are valid moment objects, send the result
+  if ( dateA && dateB ) {
+    result = dateA.diff( dateB, units, returnFloat );
+  }
 
   // fail silently if the dates were not processed to a moment
   return result;
 });
 
-Template.registerHelper('moFrom', function () {
+Template.registerHelper( 'moFrom', function () {
   // Calling this reactive property ensure the helper is updated
-  var locale = mo.currentLocale.get();
+  var locale = mo.currentLocale.get(); // eslint-disable-line
   var result;
 
-  //enables the arguments to be provided as args or vars
-  var args = _.toArray(arguments);
+  // enables the arguments to be provided as args or vars
+  var args = _.toArray( arguments );
   var kw = args.pop();
-  var dateA = mo._getMoment(args[0] || kw.hash.a);
-  var dateB = mo._getMoment(args[1] || kw.hash.b);
-  //if the two dates are valid moment objects, send the result
-  if (dateA && dateB) { result = dateA.from(dateB); }
+  var dateA = mo._getMoment( args[0] || kw.hash.a );
+  var dateB = mo._getMoment( args[1] || kw.hash.b );
+
+  // if the two dates are valid moment objects, send the result
+  if ( dateA && dateB ) {
+    result = dateA.from( dateB );
+  }
 
   // fail silently if the dates were not processed to a moment
   return result;
 });
 
-Template.registerHelper('moFromNow', function () {
+Template.registerHelper( 'moFromNow', function () {
   // Calling this reactive property ensure the helper is updated
-  var locale = mo.currentLocale.get();
+  var locale = mo.currentLocale.get(); // eslint-disable-line
 
-  //enables the arguments to be provided as args or vars
-  var args = _.toArray(arguments);
+  // enables the arguments to be provided as args or vars
+  var args = _.toArray( arguments );
   var kw = args.pop();
   var date = args[0] || kw.hash.d;
   var withoutSuffix = args[1] || kw.hash.withoutSuffix;
 
-  //if the withoutSuffix is truthy convert it to true, or falsy = false
-  if (withoutSuffix) { withoutSuffix = true; } else { withoutSuffix = false; }
+  // if the withoutSuffix is truthy convert it to true, or falsy = false
+  if ( withoutSuffix ) {
+    withoutSuffix = true;
+  } else {
+    withoutSuffix = false;
+  }
 
-  //work with what is given to get a moment object
-  var moDate = mo._getMoment(date);
+  // work with what is given to get a moment object
+  var moDate = mo._getMoment( date );
 
-  //if we did end up with a valid object above, send the result
-  if (moDate) { return moDate.fromNow(withoutSuffix); }
+  // if we did end up with a valid object above, send the result
+  if ( moDate ) {
+    return moDate.fromNow( withoutSuffix );
+  }
 
   // fail silently if the dates were not processed to a moment
   return;
 });
 
-Template.registerHelper('moCalendar', function () {
+Template.registerHelper( 'moCalendar', function () {
   // Calling this reactive property ensure the helper is updated
-  var locale = mo.currentLocale.get();
+  var locale = mo.currentLocale.get(); // eslint-disable-line
 
-  //enables the arguments to be provided as args or vars
-  //eg. {{moFormat date=myDate}} or {{moFormat myDate}} will do the same thing
-  var args = _.toArray(arguments);
+  // enables the arguments to be provided as args or vars
+  // eg. {{moFormat date=myDate}} or {{moFormat myDate}} will do the same thing
+  var args = _.toArray( arguments );
   var kw = args.pop();
   var date = args[0] || kw.hash.d;
   var referenceDate = args[1] || kw.hash.r;
+  var moReferenceDate;
 
-  //processes what was given to ensure we end up with a moment object
-  var moDate = mo._getMoment(date);
+  // processes what was given to ensure we end up with a moment object
+  var moDate = mo._getMoment( date );
 
-  //never let reference date default to now if not provided
-  if (referenceDate) {
-    var moReferenceDate = mo._getMoment(referenceDate);
+  // never let reference date default to now if not provided
+  if ( referenceDate ) {
+    moReferenceDate = mo._getMoment( referenceDate );
   }
 
   // fail silently if the date is not worked out to be a moment
-  if (moDate) {
-    if (moReferenceDate) {
-      return moDate.calendar(moReferenceDate);
+  if ( moDate ) {
+    if ( moReferenceDate ) {
+      return moDate.calendar( moReferenceDate );
     } else {
       return moDate.calendar();
     }
@@ -116,7 +132,8 @@ Template.registerHelper('moCalendar', function () {
   return;
 });
 
-Template.registerHelper('moNow', function () {
+Template.registerHelper( 'moNow', function () {
   var now = mo.now.get();
+  
   return now;
 });

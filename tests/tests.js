@@ -9,7 +9,7 @@ var dateStringAfter = '2015-07-22 15:19:22';
 var dateObjectAfter = new Date(dateStringAfter);
 var dateMomentAfter = moment(dateObjectAfter);
 
-//helpers tests
+// helpers tests
 if (Meteor.isClient) {
   Tinytest.add('momentjs - check version', function (test) {
     test.equal(momentVersion, moment.version);
