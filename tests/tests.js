@@ -456,7 +456,7 @@ if ( Meteor.isClient ) {
     test.equal( Blaze.toHTMLWithData( Template.moCalendarVars, {
       someDateTime: lastThu7pm,
       referenceTime: referenceTime
-    }), 'Last Thursday at 7:00 P M' );
+    }), 'Last Thursday at 7:00 PM' );
 
     test.equal( Blaze.toHTMLWithData( Template.moCalendarVars, {
       someDateTime: dateString,
