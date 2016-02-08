@@ -1,0 +1,22 @@
+{
+  // Standard
+  "attr-lowercase": true,
+  "attr-no-duplication": true,
+  "attr-value-double-quotes": true,
+  "attr-value-not-empty": true,
+  "doctype-first": false,
+  "id-unique": true,
+  "spec-char-escape": true,
+  "src-not-empty": true,
+  "tag-pair": true,
+  "tagname-lowercase": true,
+  "title-require": true,
+  // Accessibility
+  "alt-require": true,
+  // Specification
+  "attr-unsafe-chars": true,
+  "id-class-value" : "bump",
+  "id-class-ad-disabled": true,
+  "inline-style-disabled": true,
+  "space-tab-mixed-disabled": true
+}
