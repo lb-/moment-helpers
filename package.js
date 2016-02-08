@@ -1,7 +1,7 @@
 'use strict';
 
 var packageName = 'lbee:moment-helpers';
-var packageVersion = '1.3.1';
+var packageVersion = '1.3.2';
 var meteorVersionsFrom = '1.2.1';
 var momentVersion = '2.11.2';
 
