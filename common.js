@@ -1,7 +1,5 @@
-'use strict';
-
-var MomentHelper = function MomentHelper () {
-  var self = this;
+let MomentHelper = function MomentHelper () {
+  let self = this;
 
   if ( Meteor.isClient ) {
     // locale

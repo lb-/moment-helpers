@@ -1,18 +1,16 @@
-'use strict';
-
 Template.registerHelper( 'moFormat', function () {
   // Calling this reactive property ensure the helper is updated
-  var locale = mo.currentLocale.get(); // eslint-disable-line
+  const locale = mo.currentLocale.get(); // eslint-disable-line
 
   // enables the arguments to be provided as args or vars
   // eg. {{moFormat date=myDate}} or {{moFormat myDate}} will do the same thing
-  var args = _.toArray( arguments );
-  var kw = args.pop();
-  var date = args[0] || kw.hash.d;
-  var formatToken = args[1] || kw.hash.f;
+  let args = Array.from( arguments );
+  const kw = args.pop();
+  const date = args[0] || kw.hash.d;
+  const formatToken = args[1] || kw.hash.f;
 
   // processes what was given to ensure we end up with a moment object
-  var moDate = mo._getMoment( date );
+  const moDate = mo._getMoment( date );
 
   // fail silently if the date is not worked out to be a moment
   if ( moDate ) {
@@ -24,16 +22,16 @@ Template.registerHelper( 'moFormat', function () {
 
 Template.registerHelper( 'moDiff', function () {
   // Calling this reactive property ensure the helper is updated
-  var locale = mo.currentLocale.get(); // eslint-disable-line
-  var result;
+  const locale = mo.currentLocale.get(); // eslint-disable-line
+  let result;
 
   // enables the arguments to be provided as args or vars
-  var args = _.toArray( arguments );
-  var kw = args.pop();
-  var dateA = mo._getMoment( args[0] || kw.hash.a );
-  var dateB = mo._getMoment( args[1] || kw.hash.b );
-  var units = args[2] || kw.hash.units || 'seconds';
-  var returnFloat = args[3] || kw.hash.returnFloat;
+  let args = Array.from( arguments );
+  const kw = args.pop();
+  const dateA = mo._getMoment( args[0] || kw.hash.a );
+  const dateB = mo._getMoment( args[1] || kw.hash.b );
+  const units = args[2] || kw.hash.units || 'seconds';
+  let returnFloat = args[3] || kw.hash.returnFloat;
 
   // if the returnFloat is truthy convert it to true, or falsy = false
   if ( returnFloat ) {
@@ -53,14 +51,14 @@ Template.registerHelper( 'moDiff', function () {
 
 Template.registerHelper( 'moFrom', function () {
   // Calling this reactive property ensure the helper is updated
-  var locale = mo.currentLocale.get(); // eslint-disable-line
+  const locale = mo.currentLocale.get(); // eslint-disable-line
   var result;
 
   // enables the arguments to be provided as args or vars
-  var args = _.toArray( arguments );
-  var kw = args.pop();
-  var dateA = mo._getMoment( args[0] || kw.hash.a );
-  var dateB = mo._getMoment( args[1] || kw.hash.b );
+  let args = Array.from( arguments );
+  const kw = args.pop();
+  const dateA = mo._getMoment( args[0] || kw.hash.a );
+  const dateB = mo._getMoment( args[1] || kw.hash.b );
 
   // if the two dates are valid moment objects, send the result
   if ( dateA && dateB ) {
@@ -73,13 +71,13 @@ Template.registerHelper( 'moFrom', function () {
 
 Template.registerHelper( 'moFromNow', function () {
   // Calling this reactive property ensure the helper is updated
-  var locale = mo.currentLocale.get(); // eslint-disable-line
+  const locale = mo.currentLocale.get(); // eslint-disable-line
 
   // enables the arguments to be provided as args or vars
-  var args = _.toArray( arguments );
-  var kw = args.pop();
-  var date = args[0] || kw.hash.d;
-  var withoutSuffix = args[1] || kw.hash.withoutSuffix;
+  let args = _.toArray( arguments );
+  const kw = args.pop();
+  const date = args[0] || kw.hash.d;
+  let withoutSuffix = args[1] || kw.hash.withoutSuffix;
 
   // if the withoutSuffix is truthy convert it to true, or falsy = false
   if ( withoutSuffix ) {
@@ -89,7 +87,7 @@ Template.registerHelper( 'moFromNow', function () {
   }
 
   // work with what is given to get a moment object
-  var moDate = mo._getMoment( date );
+  const moDate = mo._getMoment( date );
 
   // if we did end up with a valid object above, send the result
   if ( moDate ) {
@@ -102,18 +100,18 @@ Template.registerHelper( 'moFromNow', function () {
 
 Template.registerHelper( 'moCalendar', function () {
   // Calling this reactive property ensure the helper is updated
-  var locale = mo.currentLocale.get(); // eslint-disable-line
+  const locale = mo.currentLocale.get(); // eslint-disable-line
 
   // enables the arguments to be provided as args or vars
   // eg. {{moFormat date=myDate}} or {{moFormat myDate}} will do the same thing
-  var args = _.toArray( arguments );
-  var kw = args.pop();
-  var date = args[0] || kw.hash.d;
-  var referenceDate = args[1] || kw.hash.r;
-  var moReferenceDate;
+  let args = Array.from( arguments );
+  const kw = args.pop();
+  const date = args[0] || kw.hash.d;
+  const referenceDate = args[1] || kw.hash.r;
+  let moReferenceDate;
 
   // processes what was given to ensure we end up with a moment object
-  var moDate = mo._getMoment( date );
+  const moDate = mo._getMoment( date );
 
   // never let reference date default to now if not provided
   if ( referenceDate ) {
@@ -133,7 +131,7 @@ Template.registerHelper( 'moCalendar', function () {
 });
 
 Template.registerHelper( 'moNow', function () {
-  var now = mo.now.get();
-
+  const now = mo.now.get();
+  
   return now;
 });
