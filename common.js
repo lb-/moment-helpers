@@ -1,4 +1,4 @@
-class MomentHelper {
+class MomentHelperInit {
   // let self = this;
 
   //
@@ -148,4 +148,4 @@ class MomentHelper {
 
 }
 
-mo = new MomentHelper( Meteor.isClient );
+mo = new MomentHelperInit( Meteor.isClient );
