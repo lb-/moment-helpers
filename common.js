@@ -1,74 +1,78 @@
-let MomentHelper = function MomentHelper () {
-  let self = this;
+class MomentHelper {
+  // let self = this;
 
-  if ( Meteor.isClient ) {
-    // locale
+  //
+  constructor ( isClient ) {
 
-    // create a new reactiveVar that holds the moment helper context of locale
-    self.currentLocale = new ReactiveVar();
+    if ( isClient ) {
+      // create a new reactiveVar that holds the moment helper context of locale
+      this.currentLocale = new ReactiveVar();
 
-    // when creating the moment helper context, set the locale same as moment
-    self.currentLocale.set( moment.locale() );
+      // when creating the moment helper context, set the locale same as moment
+      this.currentLocale.set( moment.locale() );
 
-    // expose a utility to set the locale, updating moment & reactive locale
-    self.setLocale = function ( locale ) {
-      moment.locale( locale );
-      self.currentLocale.set( moment.locale() );
+      // reactive now
+      this.now = new ReactiveVar( moment() );
+      var now = this.now;
+
+      Meteor.setInterval( function () {
+        now.set( moment() );
+      }, 1000 ); // every second
+    }
+
+    // logging messages
+    this._msg = {
+      dateNotValidReturnNow:
+        'valid date not provided, sending new moment instead',
+      dateNotValidReturnNull:
+        'valid date not provided, sending null'
     };
 
-    // reactive now
-    self.now = new ReactiveVar( moment() );
-    Meteor.setInterval( function () {
-      self.now.set( moment() );
-    }, 1000 ); // every second
+    // initate the default options
+    this.options = {
+      // if a helper is called and no date given, create one as now
+      returnNowIfDateNotGiven: false,
+      // extra console logging
+      debug: false,
+      // initial library of format tokens
+      formatTokens: {
+        'default': 'LLL'
+        // defaults to locale date format: Month name, day of month, year, time
+      }
+    };
+
   }
 
 
-  // logging messages
-  self._msg = {
-    dateNotValidReturnNow:
-      'valid date not provided, sending new moment instead',
-    dateNotValidReturnNull:
-      'valid date not provided, sending null'
-  };
-
-  // initate the default options
-  self.options = {
-    // if a helper is called and no date given, create one as now
-    returnNowIfDateNotGiven: false,
-    // extra console logging
-    debug: false,
-    // initial library of format tokens
-    formatTokens: {
-      'default': 'LLL'
-      // defaults to locale date format: Month name, day of month, year, time
-    }
-  };
-
-
   // configuration function, merges the defaults with the options provided
-  self.configure = function ( options ) {
-    _.extend( self.options, options );
-  };
+  configure ( options ) {
+    _.extend( this.options, options );
+  }
+
+  // expose a utility to set the locale, updating moment & reactive locale
+  setLocale ( locale ) {
+    moment.locale( locale );
+    this.currentLocale.set( moment.locale() );// how does 'this' work?
+  }
 
   // logging function
-  self.log = function ( log ) {
+  log ( log ) {
 
     // delete the currently stored log
     // this was enabled to assit with logging
-    delete self.logged;
+    delete this.logged;
 
     // if debugging is enabled, log it!
-    if ( self.options.debug ) {
-      self.logged = log;
+    if ( this.options.debug ) {
+      this.logged = log;
       console.log( log );
     }
-  };
+  }
 
   // used for moFormat, helps to get a format token eg. 'YYYY-MM-DD'
-  self._getToken = function getToken ( token, aMoment ) {
+  _getToken ( token, aMoment ) {
     check( token, Match.Optional( String, null ) );
-    var tokenLibrary = _.defaults( self.options.formatTokens, {
+    let tokenLibrary = _.defaults( this.options.formatTokens, {
       // these tokens will always be available (unless overridden)
       'dayOfWeek': 'dddd',
       'dayOfMonth': 'D',
@@ -92,9 +96,9 @@ let MomentHelper = function MomentHelper () {
 
     // return the token
     return token;
-  };
+  }
 
-  self._getMoment = function getMoment ( obj ) {
+  _getMoment ( obj ) {
     check( obj, Match.Optional(
       Match.OneOf(
         Match.Where( moment.isMoment ),
@@ -131,17 +135,17 @@ let MomentHelper = function MomentHelper () {
 
     // could not get a moment object, work out what to return if anything
     if ( !result ) {
-      if ( self.options.returnNowIfDateNotGiven ) {
-        self.log( self._msg.dateNotValidReturnNow );
+      if ( this.options.returnNowIfDateNotGiven ) {
+        this.log( this._msg.dateNotValidReturnNow );
         return moment();
       } else {
-        self.log( self._msg.dateNotValidReturnNull );
+        this.log( this._msg.dateNotValidReturnNull );
       }
     }
 
     return result;
-  };
+  }
 
-};
+}
 
-mo = new MomentHelper();
+mo = new MomentHelper( Meteor.isClient );
