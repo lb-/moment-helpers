@@ -1,9 +1,9 @@
-'use strict';
+const packageName = 'lbee:moment-helpers';
+const packageVersion = '1.3.2';
+const meteorVersionsFrom = '1.2.1';
+const momentVersion = '2.11.2';
 
-var packageName = 'lbee:moment-helpers';
-var packageVersion = '1.3.2';
-var meteorVersionsFrom = '1.2.1';
-var momentVersion = '2.11.2';
+// console.log( `momentVersion: ${momentVersion}` );
 
 Package.describe({
   name: packageName,
@@ -14,18 +14,18 @@ Package.describe({
 });
 
 Package.onUse( function ( api ) {
+
   // meteor version
   api.versionsFrom( meteorVersionsFrom );
 
   // main package requirements
-  // api.use('momentjs:moment@${momentVersion}');
+  // api.use( `momentjs:moment@${momentVersion}` );
   api.use( 'momentjs:moment@' + momentVersion );
   api.use( 'ecmascript' );
-  api.use( 'es5-shim' );
-  api.use( 'check' );
-  api.use( 'underscore' );
   api.use( 'reactive-var', 'client' );
   api.use( 'templating', 'client' );
+  api.imply( 'underscore' );
+  api.imply( 'check' );
 
   // main files
   api.addFiles( 'common.js' );
@@ -33,30 +33,29 @@ Package.onUse( function ( api ) {
 
   // export mo
   api.export( 'mo' );
+
 });
 
 Package.onTest( function ( api ) {
 
-  // meteor version
+  // Meteor version
   api.versionsFrom( meteorVersionsFrom );
-
-  // add main packages
-  api.use( 'tinytest' );
-  api.use( 'check' );
-
-  // api.use('momentjs:moment@${momentVersion}');
-  api.use( 'momentjs:moment@' + momentVersion );
-  api.use( 'ecmascript' );
-  api.use( 'es5-shim' );
-  api.use( 'underscore' );
-  api.use( 'reactive-var', 'client' );
-  api.use( 'templating', 'client' );
-  api.use( 'tinytest' );
 
   // use this package
   api.use( packageName );
 
-  // main files
+  // use packages for testing
+  api.use( 'tinytest' );
+
+  // use packages that are needed for this package
+  api.use( 'ecmascript' );
+  api.use( 'templating', 'client' );
+  api.use( 'reactive-var', 'client' );
+
+  // use Moment package
+  api.use( 'momentjs:moment@' + momentVersion );
+
+  // add main files
   api.addFiles( 'common.js' );
   api.addFiles( 'client.js', 'client' );
 
@@ -64,4 +63,5 @@ Package.onTest( function ( api ) {
   api.addFiles( 'tests/templates.html', 'client' );
   api.addFiles( 'tests/tests.js' );
   api.addFiles( 'tests/locale_tests.js', 'client' );
+
 });

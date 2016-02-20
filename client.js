@@ -134,6 +134,6 @@ Template.registerHelper( 'moCalendar', function () {
 
 Template.registerHelper( 'moNow', function () {
   var now = mo.now.get();
-  
+
   return now;
 });
