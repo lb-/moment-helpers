@@ -99,13 +99,7 @@ class MomentHelperInit {
   }
 
   _getMoment ( obj ) {
-    check( obj, Match.Optional(
-      Match.OneOf(
-        Match.Where( moment.isMoment ),
-        Date, String, null
-        )
-      )
-    );
+    
     var result;
     var date;
 
