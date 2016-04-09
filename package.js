@@ -1,5 +1,5 @@
 const packageName = 'lbee:moment-helpers';
-const packageVersion = '1.3.2';
+const packageVersion = '1.3.3';
 const meteorVersionsFrom = '1.3';
 const momentVersion = '2.12.0';
 
