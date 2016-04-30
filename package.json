@@ -1,22 +1,13 @@
 {
   "name": "lb.ee-blaze-moment-helpers",
   "version": "1.3.3",
+  "license": "MIT",
+  "repository": "https://github.com/lb-/moment-helpers",
   "description": "Date format helpers for Blaze in Meteor from Moment.js",
-  "scripts": {
-    "start": "meteor --settings settings-development.json",
-    "test": "meteor test --driver-package practicalmeteor:mocha --port 5000",
-    "chimp-watch": "chimp --ddp=http://localhost:3000 --watch --mocha --path=tests",
-    "chimp-test": "chimp --ddp=http://localhost:3000 --mocha --path=tests",
-    "staging": "meteor deploy staging.meteor.com --settings settings-development.json",
-    "production": "meteor deploy production.meteor.com --settings settings-production.json"
-  },
   "devDependencies": {
-    "chimp": "^0.33.1",
     "eslint": "^2.8.0",
     "eslint-config-airbnb": "^7.0.0",
-    "eslint-plugin-meteor": "^3.5.2",
-    "eslint-plugin-react": "^4.3.0",
-    "faker": "^3.1.0"
+    "eslint-plugin-meteor": "^3.5.2"
   },
   "eslintConfig": {
     "parserOptions": {
@@ -25,39 +16,25 @@
       }
     },
     "plugins": [
-      "meteor",
-      "react"
+      "meteor"
     ],
     "extends": [
       "airbnb/base",
-      "plugin:meteor/guide",
-      "plugin:react/recommended"
+      "plugin:meteor/guide"
     ],
     "globals": {
-      "$": false,
-      "Accounts": false,
-      "Bert": false,
       "browser": false,
       "expect": false,
-      "Factory": false,
       "Meteor": false,
-      "Roles": false,
       "server": false,
-      "SimpleSchema": false,
-      "ValidatedMethod": false
+      "Package": false,
+      "mo": false,
+      "moment": false,
+      "Template": false
     },
     "rules": {}
   },
   "dependencies": {
-    "bootstrap": "^3.3.6",
-    "jquery": "^2.2.3",
-    "jquery-validation": "^1.15.0",
-    "react": "^15.0.1",
-    "react-addons-pure-render-mixin": "^15.0.1",
-    "react-bootstrap": "^0.28.4",
-    "react-dom": "^15.0.1",
-    "react-komposer": "^1.7.1",
-    "react-router": "^2.0.1",
-    "react-router-bootstrap": "^0.20.1"
+    "moment": "2.13.0"
   }
 }
