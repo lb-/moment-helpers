@@ -1,17 +1,17 @@
 const momentVersion = '2.13.0';
 
-var dateString = '2015-03-14 10:12:00';
-var dateObject = new Date( '2015-03-14 10:12:00' );
-var dateMoment = moment( dateObject );
+const dateString = '2015-03-14 10:12:00';
+const dateObject = new Date('2015-03-14 10:12:00');
+const dateMoment = moment(dateObject);
 
-var dateStringAfter = '2015-07-22 15:19:22';
-var dateObjectAfter = new Date( dateStringAfter );
-var dateMomentAfter = moment( dateObjectAfter );
+const dateStringAfter = '2015-07-22 15:19:22';
+const dateObjectAfter = new Date(dateStringAfter);
+const dateMomentAfter = moment(dateObjectAfter);
 
-var section = 'momentjs - ';
+let section = 'momentjs - ';
 
 // helpers tests
-if ( Meteor.isClient ) {
+if (Meteor.isClient) {
   Tinytest.add( section + 'check version', function ( test ) {
     test.equal( momentVersion, moment.version );
   });
