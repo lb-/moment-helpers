@@ -275,8 +275,9 @@ Will provide some useful console logs, enable it with the config above.
 
 Any suggestions on api/interface improvements would also be appreciated.
 
-To test the package locally
+To work on and test the package locally
 ```
   #cd to the package directory
+  meteor npm install
   meteor test-packages ./
 ```
