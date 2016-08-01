@@ -30,7 +30,10 @@
       "Package": false,
       "mo": false,
       "moment": false,
+      "Tinytest": false,
+      "Blaze": false,
       "Template": false
+
     },
     "rules": {}
   },
