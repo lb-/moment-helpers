@@ -268,49 +268,55 @@ if (Meteor.isClient) {
 
 
   Tinytest.add( 'moFrom - mix of everything as args', function ( test ) {
-
     mo.configure({
-      returnNowIfDateNotGiven: true
+      returnNowIfDateNotGiven: true,
     });
-
-    test.equal( Blaze.toHTMLWithData( Template.moFromArgs, {
+    test.equal(Blaze.toHTMLWithData(Template.moFromArgs, {
       dateA: dateMomentAfter,
-      dateB: dateMoment
-    }), 'in 4 months' );
-
-    test.equal( Blaze.toHTMLWithData( Template.moFromArgs, {
+      dateB: dateMoment,
+    }), 'in 4 months');
+    test.equal(Blaze.toHTMLWithData(Template.moFromArgs, {
       dateA: dateMoment,
-      dateB: dateMomentAfter
-    }), '4 months ago' );
-
+      dateB: dateMomentAfter,
+    }), '4 months ago');
+    test.equal(Blaze.toHTMLWithData(Template.moFromArgs, {
+      dateA: dateMoment,
+      dateB: dateMomentAfter,
+      withoutSuffix: true,
+    }), '4 months');
   });
 
-  Tinytest.add( 'moFrom - mix of everything as vars', function ( test ) {
+  Tinytest.add('moFrom - mix of everything as vars', function (test) {
 
     mo.configure({
-      returnNowIfDateNotGiven: true
+      returnNowIfDateNotGiven: true,
     });
 
-    test.equal( Blaze.toHTMLWithData( Template.moFromVars, {
+    test.equal(Blaze.toHTMLWithData(Template.moFromVars, {
       dateA: dateMomentAfter,
-      dateB: dateMoment
-    }), 'in 4 months' );
+      dateB: dateMoment,
+    }), 'in 4 months');
 
-    test.equal( Blaze.toHTMLWithData( Template.moFromVars, {
+    test.equal(Blaze.toHTMLWithData(Template.moFromVars, {
       dateA: dateMoment,
-      dateB: dateMomentAfter
-    }), '4 months ago' );
+      dateB: dateMomentAfter,
+    }), '4 months ago');
 
-    test.equal( Blaze.toHTMLWithData( Template.moFromVars, {
+    test.equal(Blaze.toHTMLWithData(Template.moFromVars, {
+      dateA: dateMoment,
+      dateB: dateMomentAfter,
+      withoutSuffix: true,
+    }), '4 months');
+
+    test.equal(Blaze.toHTMLWithData(Template.moFromVars, {
       dateA: null,
-      dateB: dateMoment
-    }), moment().from( dateMoment ) );
+      dateB: dateMoment,
+    }), moment().from(dateMoment));
 
-    test.equal( Blaze.toHTMLWithData( Template.moFromVars, {
+    test.equal(Blaze.toHTMLWithData(Template.moFromVars, {
       // dateA: dateMoment,
-      dateB: dateMoment
-    }), moment().from( dateMoment ) );
-
+      dateB: dateMoment,
+    }), moment().from(dateMoment));
   });
 
   section = 'moCalendar - ';

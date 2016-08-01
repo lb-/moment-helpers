@@ -193,18 +193,20 @@ You can either use variables passed to the helper or keyword arguments:
 
 __date__ can be a Javascript Date, moment object or date string (using the default Moment.js parser), it will behave as the date described above
 
-__withoutSuffix__ defaults to false, will return the string with or without the suffix.
+__withoutSuffix__ is optional and defaults to false, will return the string with `5 days ago` or without `5 days` the suffix.
 
 ### moFrom
 http://momentjs.com/docs/#/displaying/from/
 
 You can either use variables passed to the helper or keyword arguments:
-* `{{moFrom dateA dateB}}`
-* `{{moFrom a=dateA b=dateB}}`
+* `{{moFrom dateA dateB withoutSuffix}}`
+* `{{moFrom a=dateA b=dateB withoutSuffix=false}}`
 
 __dateA or dateB__ can be a Javascript Date, moment object or date string (using the default Moment.js parser), it will behave as the date described above.
 
-Can be used with `moNow` to provide a reactive date difference, updated every second
+Can be used with `moNow` to provide a reactive date difference, updated every second.
+
+__withoutSuffix__ is optional and defaults to false, will return the string with `5 days ago` or without `5 days` the suffix.
 
 
 ### moDiff

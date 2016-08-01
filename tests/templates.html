@@ -27,11 +27,11 @@
 </template>
 
 <template name="moFromArgs">
-  {{moFrom dateA dateB}}
+  {{moFrom dateA dateB withoutSuffix}}
 </template>
 
 <template name="moFromVars">
-  {{moFrom a=dateA b=dateB}}
+  {{moFrom a=dateA b=dateB withoutSuffix=withoutSuffix}}
 </template>
 
 <template name="moCalendarArgs">
