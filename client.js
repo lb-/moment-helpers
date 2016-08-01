@@ -68,10 +68,18 @@ Template.registerHelper('moFrom', function moFrom(...args) {
   const kw = args.pop();
   const dateA = mo._getMoment(args[0] || kw.hash.a);
   const dateB = mo._getMoment(args[1] || kw.hash.b);
+  let withoutSuffix = args[2] || kw.hash.withoutSuffix;
+
+  // if the withoutSuffix is truthy convert it to true, or falsy = false
+  if (withoutSuffix) {
+    withoutSuffix = true;
+  } else {
+    withoutSuffix = false;
+  }
 
   // if the two dates are valid moment objects, send the result
   if (dateA && dateB) {
-    result = dateA.from(dateB);
+    result = dateA.from(dateB, withoutSuffix);
   }
 
   // fail silently if the dates were not processed to a moment
