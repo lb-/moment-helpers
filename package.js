@@ -1,7 +1,7 @@
 const packageName = 'lbee:moment-helpers';
-const packageVersion = '1.3.4';
+const packageVersion = '1.3.5';
 const meteorVersion = '1.3.2.4';
-const momentVersion = 'momentjs:moment@2.13.1';
+const momentVersion = 'momentjs:moment@2.14.1';
 
 Package.describe({
   name: packageName,
@@ -58,7 +58,6 @@ const onTest = function onTest(api) {
   api.addFiles('tests/tests.js');
   api.addFiles('tests/locale_tests.js', 'client');
 };
-
 
 Package.onTest(onTest);
 Package.onUse(onUse);

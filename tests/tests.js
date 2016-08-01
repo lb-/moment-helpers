@@ -1,4 +1,4 @@
-const momentVersion = '2.13.0';
+const momentVersion = '2.14.1';
 
 const dateString = '2015-03-14 10:12:00';
 const dateObject = new Date('2015-03-14 10:12:00');
@@ -12,17 +12,15 @@ let section = 'momentjs - ';
 
 // helpers tests
 if (Meteor.isClient) {
-  Tinytest.add( section + 'check version', function ( test ) {
-    test.equal( momentVersion, moment.version );
-  });
-
+  Tinytest.add(`${section} check version`,
+    test => test.equal(momentVersion, moment.version)
+  );
   section = 'helpers - ';
-  Tinytest.add( section + 'init templates', function ( test ) {
-    test.equal( Blaze.toHTML( Template.testTemplateInit ), 'test' );
-  });
-
+  Tinytest.add(`${section} init templates`,
+    test => test.equal(Blaze.toHTML(Template.testTemplateInit), 'test')
+  );
   section = 'moFormat - ';
-  Tinytest.add( section + 'helper with all variables', function ( test ) {
+  Tinytest.add(`${section} helper with all variables`, function ( test ) {
     test.equal( Blaze.toHTMLWithData( Template.moFormatArgs, {
       date: dateMoment,
       formatToken: 'YYYY-MM-DD Dd Mo'
@@ -41,7 +39,7 @@ if (Meteor.isClient) {
     }), 'Saturday the 14th of March, 2015' );
   });
 
-  Tinytest.add( section + 'different date vars provided', function ( test ) {
+  Tinytest.add(`${section} different date vars provided`, function ( test ) {
     test.equal( Blaze.toHTMLWithData( Template.moFormatArgs, {
       date: dateObject,
       formatToken: 'YYYY-MM-DD Dd Mo'
@@ -52,7 +50,7 @@ if (Meteor.isClient) {
     }), '10:12 am' );
   });
 
-  Tinytest.add( section + 'helper with missing variables', function ( test ) {
+  Tinytest.add(`${section} helper with missing variables`, function ( test ) {
     test.equal( Blaze.toHTMLWithData( Template.moFormatArgs, {
       date: dateMoment
     }), dateMoment.format( 'LLL' ) ); // default format
@@ -68,7 +66,7 @@ if (Meteor.isClient) {
   });
 
 
-  Tinytest.add( section + 'helper w empty str return now', function ( test ) {
+  Tinytest.add(`${section} helper w empty str return now`, function ( test ) {
     var fmt = 'dddd [the] Do [of] MMMM, YYYY';
 
     mo.configure({ returnNowIfDateNotGiven: true });
@@ -114,7 +112,7 @@ if (Meteor.isClient) {
     mo.configure({ returnNowIfDateNotGiven: false });
   });
 
-  Tinytest.add( section + 'helper empty str & return null', function ( test ) {
+  Tinytest.add(`${section} helper empty str & return null`, function ( test ) {
     mo.configure({ returnNowIfDateNotGiven: false });
     test.equal(
       Blaze.toHTMLWithData( Template.moFormatVars, { date: '' }), ''
@@ -655,29 +653,24 @@ if (Meteor.isClient) {
 
   });
 
-  Tinytest.add( section + 'overwrite library', function ( test ) {
-
+  Tinytest.add(`${section} overwrite library`, function test(test) {
     mo.configure({
       formatTokens: {
-        'dayOfWeek': 'dd',
-        'time': 'HH:MM'
-      }
+        dayOfWeek: 'dd',
+        time: 'HH:MM',
+      },
     });
-
     test.equal(
       Blaze.toHTMLWithData(
         Template.moFormatArgs,
         { date: dateMoment, formatToken: 'dayOfWeek' }
       ), 'Sa'
     );
-
     test.equal(
       Blaze.toHTMLWithData(
         Template.moFormatArgs,
         { date: dateMoment, formatToken: 'time' }
       ), '10:03'
     );
-
   });
-
 }
