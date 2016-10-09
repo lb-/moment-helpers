@@ -1,4 +1,4 @@
-const momentVersion = '2.14.1';
+const momentVersion = '2.15.1';
 
 const dateString = '2015-03-14 10:12:00';
 const dateObject = new Date('2015-03-14 10:12:00');
