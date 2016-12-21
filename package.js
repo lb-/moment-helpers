@@ -1,14 +1,14 @@
 const packageName = 'lbee:moment-helpers';
-const packageVersion = '1.3.6';
-const meteorVersion = '1.4.1.2';
-const momentVersion = 'momentjs:moment@2.15.1';
+const packageVersion = '1.3.7';
+const meteorVersion = 'METEOR@1.4.1.2';
+const momentVersion = 'momentjs:moment@2.17.1';
 
 Package.describe({
   name: packageName,
   version: packageVersion,
   summary: 'Date format helpers from Moment.js',
   git: 'https://github.com/lb-/moment-helpers',
-  documentation: 'README.md',
+  documentation: 'README.md'
 });
 
 const onUse = function onUse(api) {
@@ -20,8 +20,8 @@ const onUse = function onUse(api) {
   api.use('ecmascript');
   api.use('reactive-var', 'client');
   api.use('templating', 'client');
-  api.imply('underscore');
-  api.imply('check');
+  api.use('underscore');
+  api.use('check');
 
   // main files
   api.addFiles('common.js');

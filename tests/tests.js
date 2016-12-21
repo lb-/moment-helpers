@@ -1,4 +1,4 @@
-const momentVersion = '2.15.1';
+const momentVersion = '2.17.1';
 
 const dateString = '2015-03-14 10:12:00';
 const dateObject = new Date('2015-03-14 10:12:00');
@@ -221,7 +221,7 @@ if (Meteor.isClient) {
       dateB: dateMoment,
       // units: 'days', // defaults to seconds
       returnFloat: true
-    }), '11250442' );
+    }), '11254042' );
 
     test.matches( Blaze.toHTMLWithData( Template.moDiffArgs, {
       dateA: dateMomentAfter,
@@ -253,7 +253,7 @@ if (Meteor.isClient) {
       dateB: dateMoment,
       // units: 'days', // defaults to seconds
       returnFloat: true
-    }), '11250442' );
+    }), '11254042' );
 
     test.matches( Blaze.toHTMLWithData( Template.moDiffVars, {
       dateA: dateMomentAfter,
@@ -263,7 +263,6 @@ if (Meteor.isClient) {
     }), /(4\.2)[0-9]*/ );
 
   });
-
 
   Tinytest.add( 'moFrom - mix of everything as args', function ( test ) {
     mo.configure({
