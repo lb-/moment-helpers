@@ -1,3 +1,5 @@
+const moment = require('moment');
+
 class MomentHelperInit {
   // let self = this;
 
@@ -106,7 +108,7 @@ class MomentHelperInit {
     // goal is to get a moment object from what is provided
     if ( moment.isMoment( obj ) ) {
       // if a moment is provided, return that moment, no questions asked
-      result = obj;
+        result = obj;
     } else if ( _.isDate( obj ) ) {
       // if a date is provided, convert to moment and return
       result = moment( obj );
@@ -129,6 +131,11 @@ class MomentHelperInit {
 
     // could not get a moment object, work out what to return if anything
     if ( !result ) {
+      // lets support epoch as inbound date type
+      if(typeof obj === 'number'){
+        return moment.unix(obj);
+      }
+
       if ( this.options.returnNowIfDateNotGiven ) {
         this.log( this._msg.dateNotValidReturnNow );
         return moment();

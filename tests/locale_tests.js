@@ -1,3 +1,4 @@
+const moment = require('moment');
 'use strict';
 
 Tinytest.add( 'moment locale - testing', function ( test ) {

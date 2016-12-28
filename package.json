@@ -38,6 +38,6 @@
     "rules": {}
   },
   "dependencies": {
-    "moment": "2.13.0"
+    "moment": "2.17.1"
   }
 }
