@@ -5,7 +5,7 @@ const meteorVersion = 'METEOR@1.4.1.2';
 Package.describe({
   name: packageName,
   version: packageVersion,
-  summary: 'Date format helpers from Moment.js',
+  summary: "Date format helpers for Blaze in Meteor from Moment.js",
   git: 'https://github.com/lb-/moment-helpers',
   documentation: 'README.md'
 });
