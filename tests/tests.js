@@ -1,5 +1,6 @@
 const momentVersion = '2.17.1';
 
+const moment = require('moment');
 const dateString = '2015-03-14 10:12:00';
 const dateObject = new Date('2015-03-14 10:12:00');
 const dateMoment = moment(dateObject);

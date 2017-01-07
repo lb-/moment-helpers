@@ -1,7 +1,6 @@
 const packageName = 'lbee:moment-helpers';
-const packageVersion = '1.3.7';
+const packageVersion = '1.3.8';
 const meteorVersion = 'METEOR@1.4.1.2';
-const momentVersion = 'momentjs:moment@2.17.1';
 
 Package.describe({
   name: packageName,
@@ -16,7 +15,6 @@ const onUse = function onUse(api) {
   api.versionsFrom(meteorVersion);
 
   // main package requirements
-  api.use(momentVersion);
   api.use('ecmascript');
   api.use('reactive-var', 'client');
   api.use('templating', 'client');
@@ -46,9 +44,6 @@ const onTest = function onTest(api) {
   api.use('templating', 'client');
   api.use('reactive-var', 'client');
 
-  // use Moment package
-  api.use(momentVersion);
-
   // add main files
   api.addFiles('common.js');
   api.addFiles('client.js', 'client');
@@ -58,6 +53,11 @@ const onTest = function onTest(api) {
   api.addFiles('tests/tests.js');
   api.addFiles('tests/locale_tests.js', 'client');
 };
+
+/* Lets use moment from npm - not atmosphere */
+Npm.depends({
+    moment : "2.17.1"
+});
 
 Package.onTest(onTest);
 Package.onUse(onUse);
