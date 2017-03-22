@@ -1,5 +1,5 @@
 const packageName = 'lbee:moment-helpers';
-const packageVersion = '1.3.9';
+const packageVersion = '1.3.10';
 const meteorVersion = 'METEOR@1.4.1.2';
 
 Package.describe({
@@ -54,9 +54,8 @@ const onTest = function onTest(api) {
   api.addFiles('tests/locale_tests.js', 'client');
 };
 
-/* Lets use moment from npm - not atmosphere */
 Npm.depends({
-    moment : "2.17.1"
+    moment : '2.18.1'
 });
 
 Package.onTest(onTest);

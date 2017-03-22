@@ -1,4 +1,4 @@
-const momentVersion = '2.17.1';
+const momentVersion = '2.18.1';
 
 const moment = require('moment');
 const dateString = '2015-03-14 10:12:00';
@@ -14,7 +14,7 @@ let section = 'momentjs - ';
 // helpers tests
 if (Meteor.isClient) {
   Tinytest.add(`${section} check version`,
-    test => test.equal(momentVersion, moment.version)
+    test => test.equal(moment.version, momentVersion)
   );
   section = 'helpers - ';
   Tinytest.add(`${section} init templates`,
