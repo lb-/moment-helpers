@@ -1,5 +1,11 @@
 # Moment Helpers
 
+**Notice**
+
+As of February 2018, this project will no longer be updated.
+
+---
+
 A set of helpers that closely follows the [Moment.js](http://momentjs.com/) api giving you easy access to formatting and other utilities.
 
 Implemented helpers:
